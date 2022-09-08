@@ -21,7 +21,7 @@ add_dependencies(GraphLibrary GitTraceCommit)
 add_custom_command(TARGET GraphLibrary POST_BUILD
         COMMAND "${GIT_EXECUTABLE}"
         commit -q --allow-empty --no-verify -m "compile succeed"
-        --author="tracer-ps3-2021 <tracer-ps3-2021@nju.edu.cn>"
+        #--author="tracer-ps3-2021 <tracer-ps3-2021@nju.edu.cn>"
         WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
 
 # Your custom tests below
