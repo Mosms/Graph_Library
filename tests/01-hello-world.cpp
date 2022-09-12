@@ -1,4 +1,4 @@
-#include <DataStructures/Edge.h>
+#include <DataStructures/Graph.h>
 int main()
 {
     Graph g; // 创建一张新的图
