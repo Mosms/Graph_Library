@@ -1,1 +1,110 @@
 #include <DataStructures/Graph.h>
+
+Graph::Graph() {}
+Graph::~Graph() {}
+
+bool Graph::AddVertex(int vertex) {
+    if(ContainsVertex(vertex)) return false;
+    else Vertices.insert(vertex);
+    return true;
+}
+bool Graph::RemoveVertex(int vertex) {
+    if(!ContainsVertex(vertex)) return false;
+    Vertices.erase(vertex);
+    if(Edges.count(vertex))
+        Edges.erase(vertex);//虽然没有删除完，但是删一点是一点
+    for(auto i = Edges.begin();i != Edges.end();i++)
+        i->second.erase(vertex);
+    return true;
+}
+
+bool Graph::AddEdge(int vertex1, int vertex2) {
+    if(ContainsEdge(vertex1, vertex2)) return false;
+    if(Edges.count(vertex1))
+        Edges.find(vertex1)->second.insert(vertex2);
+    else {
+        std::set<int> this_out = {vertex2};
+        Edges.insert(std::make_pair(vertex1, this_out));
+    }//新建边集合
+    return true;
+}
+bool Graph::RemoveEdge(int vertex1, int vertex2) {
+    if(!ContainsEdge(vertex1, vertex2)) return false;
+    Edges.find(vertex1)->second.erase(vertex2);
+    return true;
+}
+
+int Graph::CountVertices() const {
+    return Vertices.size();
+}
+int Graph::CountEdges() const {
+    int num = 0;
+    for(auto rev = Edges.begin();rev != Edges.end();rev++)
+        num += rev->second.size();
+    return num;
+}
+
+bool Graph::ContainsVertex(int vertex) const {
+    if(Vertices.count(vertex)) return true;
+    else return false;
+}
+bool Graph::ContainsEdge(int vertex1, int vertex2) const {
+    if(Vertices.count(vertex1) && Vertices.count(vertex2)){
+        if(Edges.count(vertex1)){
+            auto check= Edges.find(vertex1)->second;
+            if(check.empty()) return false;
+            else if(check.count(vertex2)) return true;
+            else return false;
+        }else return false;
+    }else return false;
+}
+
+std::vector<int> Graph::GetVertices() const {
+    std::vector<int> vertices;
+    vertices.assign(Vertices.begin(), Vertices.end());
+    return vertices;
+}
+
+std::vector<Edge> Graph::GetEdges() const {
+    std::vector<Edge> All_Edges;
+    for(auto cor1 = Edges.begin();cor1 != Edges.end();cor1++)
+        for(auto cor2 = cor1->second.begin();cor2 != cor1->second.end();cor2++)
+            All_Edges.push_back(Edge(cor1->first, *cor2));
+    return All_Edges;
+}
+
+std::vector<Edge> Graph::GetIncomingEdges(int vertex) const {
+    std::vector<Edge> inComing_Edges;
+    if(ContainsVertex(vertex))
+        for(auto cor = Edges.begin();cor != Edges.end();cor++)
+            if(cor->second.count(vertex))
+                inComing_Edges.push_back(Edge(cor->first, vertex));
+    return inComing_Edges;
+}
+
+std::vector<Edge> Graph::GetOutgoingEdges(int vertex) const {
+    std::vector<Edge> outGoing_Edges;
+    if(ContainsVertex(vertex))
+        if(Edges.count(vertex)){
+            auto check = Edges.find(vertex)->second;
+            for(auto i = check.begin();i != check.end();i++)
+                outGoing_Edges.push_back(Edge(vertex, *i));
+        }
+    return outGoing_Edges;
+}
+
+int Graph::GetDegree(int vertex) const {
+    if(ContainsVertex(vertex)){
+        if(Edges.count(vertex))
+            return Edges.find(vertex)->second.size();
+        else return 0;
+    }else return 0;
+}
+
+std::vector<int> Graph::GetNeighbors(int vertex) const {
+    std::vector<int> neighbors;
+    if(ContainsVertex(vertex))
+        if(Edges.count(vertex))
+            neighbors.assign(Edges.find(vertex)->second.begin(),Edges.find(vertex)->second.end());
+    return neighbors;
+}

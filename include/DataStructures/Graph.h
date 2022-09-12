@@ -2,6 +2,8 @@
 #define GRAPH_H
 
 #include <vector>
+#include <set>
+#include <map>
 #include <DataStructures/Edge.h>
 
 class Graph {
@@ -24,6 +26,9 @@ class Graph {
   std::vector<Edge> GetOutgoingEdges(int vertex) const;
   int GetDegree(int vertex) const;
   std::vector<int> GetNeighbors(int vertex) const;
+private:
+    std::set<int> Vertices;
+    std::map<int, std::set<int>> Edges;
 };
 
 #endif
