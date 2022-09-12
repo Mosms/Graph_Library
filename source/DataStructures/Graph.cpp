@@ -20,6 +20,9 @@ bool Graph::RemoveVertex(int vertex) {
 
 bool Graph::AddEdge(int vertex1, int vertex2) {
     if(ContainsEdge(vertex1, vertex2)) return false;
+    //边存在
+    if(!(ContainsVertex(vertex1) && ContainsVertex(vertex2))) return false;
+    //有一点不存在
     if(Edges.count(vertex1))
         Edges.find(vertex1)->second.insert(vertex2);
     else {
