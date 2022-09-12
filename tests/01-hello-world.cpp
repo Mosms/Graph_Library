@@ -1,4 +1,5 @@
 #include <DataStructures/Graph.h>
+#include <cassert>
 int main()
 {
     Graph g; // 创建一张新的图
