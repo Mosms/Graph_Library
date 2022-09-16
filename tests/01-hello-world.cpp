@@ -23,8 +23,9 @@ int main()
 
     assert(g.GetVertices().size() == g.CountVertices()); // 4
     assert(g.GetEdges().size() == 2);
-    assert(g.GetIncomingEdges(1).size() == 0);
     std::cout << g.GetIncomingEdges(1).size() << std::endl;
+    assert(g.GetIncomingEdges(1).size() == 0);
+
     assert(g.GetOutgoingEdges(1).size() == 2); // {{1, 2}, {1, 3}}
     assert(g.GetDegree(1) == 2);
     assert(g.GetNeighbors(1).size() == 2); // {2, 3}
