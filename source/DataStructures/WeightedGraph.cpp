@@ -23,7 +23,7 @@ bool WeightedGraph::AddEdge(int vertex1, int vertex2, int weight) {
     if(ContainsEdge(vertex1, vertex2)) return false; //边存在
 
     if(WeightedEdges.count(vertex1))
-        WeightedEdges.find(vertex1)->second.insert(std::make_pair(vertex1, weight));
+        WeightedEdges.find(vertex1)->second.insert(std::make_pair(vertex2, weight));
     else {
         std::map<int, int> this_out = {std::make_pair(vertex2, weight)};
         WeightedEdges.insert(std::make_pair(vertex1, this_out));
