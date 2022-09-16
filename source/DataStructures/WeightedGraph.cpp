@@ -51,11 +51,9 @@ bool WeightedGraph::ContainsVertex(int vertex) const {
 }
 bool WeightedGraph::ContainsEdge(int vertex1, int vertex2) const {
     if(ContainsVertex(vertex1) && ContainsVertex(vertex2)){
-        if(WeightedEdges.count(vertex1)){
-            auto check= WeightedEdges.find(vertex1)->second;
-            if(check.empty()) return false;
-            else return check.count(vertex2);
-        }else return false;
+        if(WeightedEdges.count(vertex1))
+            return WeightedEdges.find(vertex1)->second.count(vertex2);
+        else return false;
     }else return false;
 }
 

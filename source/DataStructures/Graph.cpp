@@ -52,11 +52,9 @@ bool Graph::ContainsVertex(int vertex) const {
 }
 bool Graph::ContainsEdge(int vertex1, int vertex2) const {
     if(ContainsVertex(vertex1) && ContainsVertex(vertex2)){
-        if(Edges.count(vertex1)){
-            auto check= Edges.find(vertex1)->second;
-            if(check.empty()) return false;
-            else return check.count(vertex2);
-        }else return false;
+        if(Edges.count(vertex1))
+            return Edges.find(vertex1)->second.count(vertex2);
+        else return false;
     }else return false;
 }
 
