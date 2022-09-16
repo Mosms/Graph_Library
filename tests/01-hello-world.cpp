@@ -1,8 +1,8 @@
-#include <DataStructures/Graph.h>
+#include <DataStructures/WeightedGraph.h>
 #include <cassert>
 int main()
 {
-    Graph g; // 创建一张新的图
+    WeightedGraph g; // 创建一张新的图
 
     assert(g.AddVertex(1) == true);
     assert(g.AddVertex(2) == true);
@@ -14,9 +14,9 @@ int main()
     assert(g.ContainsVertex(4) == false);
     assert(g.RemoveVertex(5) == false);
 
-    assert(g.AddEdge(1, 2) == true);
-    assert(g.AddEdge(1, 3) == true);
-    assert(g.AddEdge(2, 5) == false); // 5号点不存在
+    assert(g.AddEdge(1, 2,3) == true);
+    assert(g.AddEdge(1, 3,3) == true);
+    assert(g.AddEdge(2, 5,5) == false); // 5号点不存在
     assert(g.ContainsEdge(1, 2) == true);
     assert(g.ContainsEdge(2, 5) == false);
 
