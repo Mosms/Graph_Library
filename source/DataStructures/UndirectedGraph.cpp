@@ -5,7 +5,7 @@ bool UndirectedGraph::ContainsEdge(int vertex1, int vertex2) const {
         bool have = false;
         if(Edges.count(vertex1))
             have = have || Edges.find(vertex1)->second.count(vertex2);
-        else if(Edges.count(vertex2))
+        if(Edges.count(vertex2))
             have = have || Edges.find(vertex2)->second.count(vertex1);
         return have;
     }else return false;
@@ -55,7 +55,7 @@ std::vector<int> UndirectedGraph::GetNeighbors(int vertex) const {
             neighbors.assign(Edges.find(vertex)->second.begin(), Edges.find(vertex)->second.end());
         for (auto cor: Edges)
             if (cor.second.count(vertex))
-                if(cor.first != vertex)//不加入自环情况
+                if(cor.first != vertex)//不两次加入自环情况
                     neighbors.push_back(cor.first);
     }
     return neighbors;
