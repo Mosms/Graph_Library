@@ -20,5 +20,6 @@ int main()
     assert(g.RemoveEdge(3,1)==true);
     for(auto i : g.GetNeighbors(1))
         std::cout<<i<<std::endl;
+    std::cout<<g.GetDegree(1);
     return 0;
 }
