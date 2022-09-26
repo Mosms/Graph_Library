@@ -23,5 +23,13 @@ int main()
     for(auto i : g.GetNeighbors(1))
         std::cout<<i<<std::endl;
     std::cout<<g.GetDegree(1);
+
+    UndirectedWeightedGraph w;
+    assert(w.AddVertex(1)==true);
+    assert(w.AddVertex(2)==true);
+    assert(w.RemoveEdge(1,2)==false);
+    assert(w.ContainsEdge(1,2)==false);
+    assert(w.AddEdge(1,2,1)==true);
+    assert(w.GetWeight(2,1)==1);
     return 0;
 }
