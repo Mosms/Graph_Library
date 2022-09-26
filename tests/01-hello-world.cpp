@@ -15,6 +15,8 @@ int main()
     assert(g.AddEdge(1,3)== true);
     assert(g.ContainsEdge(3,1)==true);
     assert(g.GetDegree(1)==2);
+    assert(g.GetDegree(2)==1);
+    assert(g.GetDegree(3)==1);
     assert(g.AddEdge(1,1)==true);
     assert(g.GetDegree(1)==4);
     assert(g.RemoveEdge(3,1)==true);
