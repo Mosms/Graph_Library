@@ -13,6 +13,8 @@ int main()
     assert(g.AddEdge(1,3)== false);
     assert(g.AddVertex(3)==true);
     assert(g.AddEdge(1,3)== true);
+    assert(g.ContainsEdge(3,1)==true);
+    assert(g.GetDegree(1)==2);
 
     return 0;
 }
