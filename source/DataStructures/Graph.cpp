@@ -25,7 +25,7 @@ bool Graph::AddEdge(int vertex1, int vertex2) {
     if(Edges.count(vertex1))
         Edges.find(vertex1)->second.insert(vertex2);
     else {
-        std::set<int> this_out = {vertex2};
+        std::set<int> this_out = { vertex2 };
         Edges.insert(std::make_pair(vertex1, this_out));
     }//新建边集合
     return true;
