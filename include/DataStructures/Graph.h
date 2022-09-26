@@ -14,19 +14,20 @@ class Graph {
   bool AddVertex(int vertex);
   bool RemoveVertex(int vertex);
   bool AddEdge(int vertex1, int vertex2);
-  bool RemoveEdge(int vertex1, int vertex2);
+  virtual bool RemoveEdge(int vertex1, int vertex2);
  public:
   int CountVertices() const;
   int CountEdges() const;
   bool ContainsVertex(int vertex) const;
-  bool ContainsEdge(int vertex1, int vertex2) const;
+  virtual bool ContainsEdge(int vertex1, int vertex2) const;
   std::vector<int> GetVertices() const;
   std::vector<Edge> GetEdges() const;
-  std::vector<Edge> GetIncomingEdges(int vertex) const;
-  std::vector<Edge> GetOutgoingEdges(int vertex) const;
-  int GetDegree(int vertex) const;
-  std::vector<int> GetNeighbors(int vertex) const;
-private:
+  virtual std::vector<Edge> GetIncomingEdges(int vertex) const;
+  virtual std::vector<Edge> GetOutgoingEdges(int vertex) const;
+  virtual int GetDegree(int vertex) const;
+  virtual std::vector<int> GetNeighbors(int vertex) const;
+
+protected:
     std::set<int> Vertices;
     std::map<int, std::set<int>> Edges;
 };

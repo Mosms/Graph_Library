@@ -84,10 +84,9 @@ std::vector<Edge> Graph::GetIncomingEdges(int vertex) const {
 std::vector<Edge> Graph::GetOutgoingEdges(int vertex) const {
     std::vector<Edge> outGoing_Edges;
     if(ContainsVertex(vertex))
-        if(Edges.count(vertex)){
+        if(Edges.count(vertex))
             for(auto cor : Edges.find(vertex)->second)
                 outGoing_Edges.push_back(Edge(vertex, cor));
-        }
     return outGoing_Edges;
 }
 
