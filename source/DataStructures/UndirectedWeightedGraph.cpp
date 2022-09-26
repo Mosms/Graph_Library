@@ -26,7 +26,7 @@ int UndirectedWeightedGraph::GetWeight(int vertex1, int vertex2) const {
             if(WeightedEdges.find(vertex1)->second.count(vertex2))
                 return WeightedEdges.find(vertex1)->second.find(vertex2)->second;
         }
-        else if(WeightedEdges.count(vertex2))
+        if(WeightedEdges.count(vertex2))
             if(WeightedEdges.find(vertex2)->second.count(vertex1))
                 return WeightedEdges.find(vertex2)->second.find(vertex1)->second;
     return -1;//error
