@@ -6,7 +6,7 @@ bool UndirectedGraph::ContainsEdge(int vertex1, int vertex2) const {
         if(Edges.count(vertex1))
             have = have || Edges.find(vertex1)->second.count(vertex2);
         else if(Edges.count(vertex2))
-            have = have || Edges.find(vertex1)->second.count(vertex2);
+            have = have || Edges.find(vertex2)->second.count(vertex1);
         return have;
     }else return false;
 }

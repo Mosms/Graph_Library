@@ -15,7 +15,7 @@ bool UndirectedWeightedGraph::ContainsEdge(int vertex1, int vertex2) const {
         if(WeightedEdges.count(vertex1))
             have = have || WeightedEdges.find(vertex1)->second.count(vertex2);
         else if(WeightedEdges.count(vertex2))
-            have = have || WeightedEdges.find(vertex1)->second.count(vertex2);
+            have = have || WeightedEdges.find(vertex2)->second.count(vertex1);
         return have;
     }else return false;
 }
