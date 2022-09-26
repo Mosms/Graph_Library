@@ -14,7 +14,7 @@ bool UndirectedGraph::ContainsEdge(int vertex1, int vertex2) const {
 bool UndirectedGraph::RemoveEdge(int vertex1, int vertex2) {
     if(!ContainsEdge(vertex1, vertex2)) return false;
     if(Edges.count(vertex1)) Edges.find(vertex1)->second.erase(vertex2);
-    else if(Edges.count(vertex2)) Edges.find(vertex2)->second.erase(vertex1);
+    if(Edges.count(vertex2)) Edges.find(vertex2)->second.erase(vertex1);
     return true;
 }
 
