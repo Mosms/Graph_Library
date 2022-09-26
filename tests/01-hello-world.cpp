@@ -17,6 +17,7 @@ int main()
     assert(g.GetDegree(1)==2);
     assert(g.AddEdge(1,1)==true);
     assert(g.GetDegree(1)==4);
+    assert(g.RemoveEdge(3,1)==true);
 
     return 0;
 }
