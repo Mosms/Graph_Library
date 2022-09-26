@@ -41,7 +41,6 @@ int UndirectedGraph::GetDegree(int vertex) const {
     if(ContainsVertex(vertex)) {
         for (auto cor: Edges)
             if (cor.second.count(vertex))
-                if(cor.first != vertex)//不加入自环情况
                     ++DegreeNum;
         if (Edges.count(vertex))
             DegreeNum += Edges.find(vertex)->second.size();

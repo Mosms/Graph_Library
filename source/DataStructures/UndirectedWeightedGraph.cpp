@@ -55,7 +55,6 @@ int UndirectedWeightedGraph::GetDegree(int vertex) const {
     if(ContainsVertex(vertex)) {
         for (auto cor: WeightedEdges)
             if (cor.second.count(vertex))
-                if(cor.first != vertex)//不加入自环情况
                     ++DegreeNum;
         if (WeightedEdges.count(vertex))
             DegreeNum += WeightedEdges.find(vertex)->second.size();
