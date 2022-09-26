@@ -9,6 +9,7 @@ int main()
     assert(g.AddVertex(2)==true);
     assert(g.AddEdge(2,1)==true);
     assert(g.ContainsEdge(1,2)==true);
+    assert(g.AddEdge(1,2)== false);
 
     return 0;
 }
