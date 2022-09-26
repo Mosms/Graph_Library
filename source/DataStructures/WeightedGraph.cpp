@@ -60,6 +60,7 @@ bool WeightedGraph::ContainsEdge(int vertex1, int vertex2) const {
 int WeightedGraph::GetWeight(int vertex1, int vertex2) const {
     if(ContainsEdge(vertex1, vertex2))
         return WeightedEdges.find(vertex1)->second.find(vertex2)->second;
+    return -1;//error
 }
 
 std::vector<int> WeightedGraph::GetVertices() const {
@@ -88,10 +89,9 @@ std::vector<WeightedEdge> WeightedGraph::GetIncomingEdges(int vertex) const {
 std::vector<WeightedEdge> WeightedGraph::GetOutgoingEdges(int vertex) const {
     std::vector<WeightedEdge> outGoing_Edges;
     if(ContainsVertex(vertex))
-        if(WeightedEdges.count(vertex)){
+        if(WeightedEdges.count(vertex))
             for(auto cor : WeightedEdges.find(vertex)->second)
                 outGoing_Edges.push_back(WeightedEdge(vertex, cor.first, cor.second));
-        }
     return outGoing_Edges;
 }
 

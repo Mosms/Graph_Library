@@ -1,6 +1,6 @@
 #include <DataStructures/Graph.h>
-#ifndef UNDIRECTEDGRAPH_H
-#define UNDIRECTEDGRAPH_H
+#ifndef UNDIRECTED_GRAPH_H
+#define UNDIRECTED_GRAPH_H
 
 class UndirectedGraph : public Graph{
 public:
@@ -16,4 +16,4 @@ public:
 
 
 
-#endif //UNDIRECTEDGRAPH_H
+#endif //UNDIRECTED_GRAPH_H
