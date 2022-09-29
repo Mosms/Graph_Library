@@ -4,6 +4,9 @@
 
 class UndirectedWeightedGraph : public WeightedGraph {
 public:
+    UndirectedWeightedGraph();
+    ~UndirectedWeightedGraph();
+public:
     virtual bool RemoveEdge(int vertex1, int vertex2) override;
     virtual bool ContainsEdge(int vertex1, int vertex2) const override;
     virtual int GetWeight(int vertex1, int vertex2) const override;

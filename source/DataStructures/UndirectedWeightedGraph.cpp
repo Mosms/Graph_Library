@@ -1,5 +1,8 @@
 #include <DataStructures/UndirectedWeightedGraph.h>
 
+UndirectedWeightedGraph::UndirectedWeightedGraph() : WeightedGraph(){}
+UndirectedWeightedGraph::~UndirectedWeightedGraph() { WeightedGraph::~WeightedGraph();}
+
 bool UndirectedWeightedGraph::RemoveEdge(int vertex1, int vertex2) {
     if(!ContainsEdge(vertex1, vertex2)) return false;
     if(WeightedEdges.count(vertex1))

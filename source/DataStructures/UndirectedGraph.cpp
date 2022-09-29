@@ -1,5 +1,8 @@
 #include <DataStructures/UndirectedGraph.h>
 
+UndirectedGraph::UndirectedGraph() : Graph() {}
+UndirectedGraph::~UndirectedGraph() { Graph::~Graph(); }
+
 bool UndirectedGraph::ContainsEdge(int vertex1, int vertex2) const {
     if(ContainsVertex(vertex1) && ContainsVertex(vertex2)){
         bool have = false;

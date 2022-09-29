@@ -4,6 +4,9 @@
 
 class UndirectedGraph : public Graph{
 public:
+    UndirectedGraph();
+    ~UndirectedGraph();
+public:
     virtual bool ContainsEdge(int vertex1, int vertex2) const override;
     virtual bool RemoveEdge(int vertex1, int vertex2) override;
 
