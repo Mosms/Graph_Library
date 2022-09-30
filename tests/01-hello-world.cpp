@@ -24,7 +24,7 @@ int main()
         std::cout<<i<<std::endl;
     std::cout<<g.GetDegree(1);
 
-    UndirectedWeightedGraph w;
+    UndirectedWeightedGraph<int> w;
     assert(w.AddVertex(1)==true);
     assert(w.AddVertex(2)==true);
     assert(w.RemoveEdge(1,2)==false);
