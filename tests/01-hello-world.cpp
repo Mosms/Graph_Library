@@ -35,5 +35,7 @@ int main()
         std::cout<<i<<std::endl;
     for(auto i : w.GetIncomingEdges(1))
         std::cout<<i.GetDestination()<<" "<<i.GetSource()<<" "<<i.GetWeight()<<std::endl;
+    for(auto i : w.GetOutgoingEdges(1))
+        std::cout<<i.GetDestination()<<" "<<i.GetSource()<<" "<<i.GetWeight()<<std::endl;
     return 0;
 }
