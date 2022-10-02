@@ -14,14 +14,13 @@ public:
 public:
     bool AddVertex(int vertex){
         if(ContainsVertex(vertex)) return false;
-        else Vertices.insert(vertex);
+        Vertices.insert(vertex);
         return true;
     }
     bool RemoveVertex(int vertex){
         if(!ContainsVertex(vertex)) return false;
         Vertices.erase(vertex);
-        if(WeightedEdges.count(vertex))
-            WeightedEdges.erase(vertex);
+        WeightedEdges.erase(vertex);
         for(auto cor : WeightedEdges)
             cor.second.erase(vertex);//分别删掉以之为入口和以之为出口的边
         return true;
@@ -31,9 +30,9 @@ public:
         if(ContainsEdge(vertex1, vertex2)) return false; //边存在
 
         if(WeightedEdges.count(vertex1))
-            WeightedEdges.find(vertex1)->second.insert(std::make_pair(vertex2, weight));
+            WeightedEdges.find(vertex1)->second.insert({vertex2, weight});
         else {
-            std::map<int, T> this_out = {std::make_pair(vertex2, weight)};
+            std::map<int, T> this_out = {std::map<int, T>::value_type(vertex2, weight)};
             WeightedEdges.insert(std::make_pair(vertex1, this_out));
         }//新建边集合
         return true;

@@ -11,8 +11,7 @@ bool Graph::AddVertex(int vertex) {
 bool Graph::RemoveVertex(int vertex) {
     if(!ContainsVertex(vertex)) return false;
     Vertices.erase(vertex);
-    if(Edges.count(vertex))
-        Edges.erase(vertex);
+    Edges.erase(vertex);
     for(auto cor : Edges)
         cor.second.erase(vertex);//分别删掉以之为入口和以之为出口的边
     return true;
