@@ -32,7 +32,7 @@ public:
         if(WeightedEdges.count(vertex1))
             WeightedEdges.find(vertex1)->second.insert({vertex2, weight});
         else {
-            std::map<int, T> this_out= {(vertex2, weight)};
+            std::map<int, T> this_out= {{vertex2, weight}};
             WeightedEdges.insert(std::make_pair(vertex1, this_out));
         }//新建边集合
         return true;
