@@ -6,7 +6,7 @@
 #include <set>
 #include <map>
 
-template<typename T>
+template<class T>
 class WeightedGraph {
 public:
     WeightedGraph() {}

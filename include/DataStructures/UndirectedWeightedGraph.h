@@ -2,7 +2,7 @@
 #define UNDIRECTED_WEIGHTED_GRAPH_H
 #include <DataStructures/WeightedGraph.h>
 
-template<typename T>
+template<class T>
 class UndirectedWeightedGraph : public WeightedGraph<T> {
 public:
     UndirectedWeightedGraph() {}

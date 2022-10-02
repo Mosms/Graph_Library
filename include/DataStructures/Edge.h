@@ -2,12 +2,13 @@
 #define EDGE_H
 
 class Edge {
-  public:
-   Edge(int source, int destination);
-   ~Edge();
-  public:
-   int GetSource() const;
-   int GetDestination() const;
+public:
+    Edge(int source, int destination);
+    ~Edge();
+
+public:
+    int GetSource() const;
+    int GetDestination() const;
 private:
     int source;
     int destination;
