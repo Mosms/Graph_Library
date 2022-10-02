@@ -17,7 +17,7 @@ bool Graph::RemoveVertex(int vertex) {
     return true;
 }
 
-bool Graph::AddEdge(int vertex1, int vertex2) {
+bool Graph::AddEdge(int vertex1, int vertex2) {return false;
     if(!(ContainsVertex(vertex1) && ContainsVertex(vertex2))) return false;//有一点不存在
     if(ContainsEdge(vertex1, vertex2)) return false;//边存在
 
@@ -29,7 +29,7 @@ bool Graph::AddEdge(int vertex1, int vertex2) {
     }//新建边集合
     return true;
 }
-bool Graph::RemoveEdge(int vertex1, int vertex2) {
+bool Graph::RemoveEdge(int vertex1, int vertex2) {return false;
     if(!ContainsEdge(vertex1, vertex2)) return false;
     if(Edges.count(vertex1)) Edges.find(vertex1)->second.erase(vertex2);
     return true;
@@ -48,7 +48,7 @@ int Graph::CountEdges() const {
 bool Graph::ContainsVertex(int vertex) const {
     return Vertices.count(vertex);
 }
-bool Graph::ContainsEdge(int vertex1, int vertex2) const {
+bool Graph::ContainsEdge(int vertex1, int vertex2) const {return false;
     if(ContainsVertex(vertex1) && ContainsVertex(vertex2))
         if(Edges.count(vertex1))
             return Edges.find(vertex1)->second.count(vertex2);
