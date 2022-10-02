@@ -32,7 +32,7 @@ bool Graph::AddEdge(int vertex1, int vertex2) {
 }
 bool Graph::RemoveEdge(int vertex1, int vertex2) {
     if(!ContainsEdge(vertex1, vertex2)) return false;
-    Edges.find(vertex1)->second.erase(vertex2);
+    if(Edges.count(vertex1)) Edges.find(vertex1)->second.erase(vertex2);
     return true;
 }
 

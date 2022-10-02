@@ -61,7 +61,9 @@ public:
     }
     virtual T GetWeight(int vertex1, int vertex2) const {
         if(ContainsEdge(vertex1, vertex2))
-            return WeightedEdges.find(vertex1)->second.find(vertex2)->second;
+            if(WeightedEdges.count(vertex1))
+                if(WeightedEdges.find(vertex1)->second.count(vertex2))
+                    return WeightedEdges.find(vertex1)->second.find(vertex2)->second;
         return 0;//error
     }
     std::vector<int> GetVertices() const {
