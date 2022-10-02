@@ -3,12 +3,12 @@
 Graph::Graph() {}
 Graph::~Graph() {}
 
-bool Graph::AddVertex(int vertex) {return 1;
+bool Graph::AddVertex(int vertex) {
     if(ContainsVertex(vertex)) return false;
-    else Vertices.insert(vertex);
+    Vertices.insert(vertex);
     return true;
 }
-bool Graph::RemoveVertex(int vertex) {return 1;
+bool Graph::RemoveVertex(int vertex) {
     if(!ContainsVertex(vertex)) return false;
     Vertices.erase(vertex);
     if(Edges.count(vertex))
@@ -18,7 +18,7 @@ bool Graph::RemoveVertex(int vertex) {return 1;
     return true;
 }
 
-bool Graph::AddEdge(int vertex1, int vertex2) {return 1;
+bool Graph::AddEdge(int vertex1, int vertex2) {
     if(!(ContainsVertex(vertex1) && ContainsVertex(vertex2))) return false;//有一点不存在
     if(ContainsEdge(vertex1, vertex2)) return false;//边存在
 
@@ -30,32 +30,30 @@ bool Graph::AddEdge(int vertex1, int vertex2) {return 1;
     }//新建边集合
     return true;
 }
-bool Graph::RemoveEdge(int vertex1, int vertex2) {return true;
+bool Graph::RemoveEdge(int vertex1, int vertex2) {
     if(!ContainsEdge(vertex1, vertex2)) return false;
     if(Edges.count(vertex1)) Edges.find(vertex1)->second.erase(vertex2);
     return true;
 }
 
-int Graph::CountVertices() const {return 1;
+int Graph::CountVertices() const {
     return Vertices.size();
 }
-int Graph::CountEdges() const {return 0;
+int Graph::CountEdges() const {
     int num = 0;
     for(auto rev : Edges)
         num += rev.second.size();
     return num;
 }
 
-bool Graph::ContainsVertex(int vertex) const {return false;
-    if(Vertices.count(vertex)) return true;
-    else return false;
+bool Graph::ContainsVertex(int vertex) const {
+    return Vertices.count(vertex);
 }
-bool Graph::ContainsEdge(int vertex1, int vertex2) const {return false;
-    if(ContainsVertex(vertex1) && ContainsVertex(vertex2)){
+bool Graph::ContainsEdge(int vertex1, int vertex2) const {
+    if(ContainsVertex(vertex1) && ContainsVertex(vertex2))
         if(Edges.count(vertex1))
             return Edges.find(vertex1)->second.count(vertex2);
-        else return false;
-    }else return false;
+    return false;
 }
 
 std::vector<int> Graph::GetVertices() const {
