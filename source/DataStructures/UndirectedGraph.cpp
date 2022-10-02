@@ -3,7 +3,7 @@
 UndirectedGraph::UndirectedGraph() : Graph() {}
 UndirectedGraph::~UndirectedGraph() { Graph::~Graph(); }
 
-bool UndirectedGraph::ContainsEdge(int vertex1, int vertex2) const {
+bool UndirectedGraph::ContainsEdge(int vertex1, int vertex2) const {return false;
     if(ContainsVertex(vertex1) && ContainsVertex(vertex2)){
         bool have = false;
         if(Edges.count(vertex1))
@@ -15,7 +15,7 @@ bool UndirectedGraph::ContainsEdge(int vertex1, int vertex2) const {
     return false;
 }
 
-bool UndirectedGraph::RemoveEdge(int vertex1, int vertex2) {
+bool UndirectedGraph::RemoveEdge(int vertex1, int vertex2) {return false;
     if(!ContainsEdge(vertex1, vertex2)) return false;
 
     if(Edges.count(vertex1)) Edges.find(vertex1)->second.erase(vertex2);
