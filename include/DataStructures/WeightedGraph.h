@@ -40,11 +40,11 @@ public:
     }
     virtual bool RemoveEdge(int vertex1, int vertex2) {
         if(!ContainsEdge(vertex1, vertex2)) return false;
-        WeightedEdges.find(vertex1)->second.erase(vertex2);
+        if(WeightedEdges.count(vertex1)) WeightedEdges.find(vertex1)->second.erase(vertex2);
         return true;
     }
 public:
-    int CountVertices() const {return Vertices.size();}
+    int CountVertices() const { return Vertices.size();}
     int CountEdges() const {
         int num = 0;
         for(auto rev : WeightedEdges)
@@ -75,7 +75,7 @@ public:
         std::vector<WeightedEdge<T>> All_Edges;
         for(auto cor1 : WeightedEdges)
             for(auto cor2 : cor1.second)
-                All_Edges.push_back(WeightedEdge(cor1.first, cor2.first, cor2.second));
+                All_Edges.push_back(WeightedEdge<T>(cor1.first, cor2.first, cor2.second));
         return All_Edges;
     }
     virtual std::vector<WeightedEdge<T>> GetIncomingEdges(int vertex) const {
@@ -83,7 +83,7 @@ public:
         if(ContainsVertex(vertex))
             for(auto cor : WeightedEdges)
                 if(cor.second.count(vertex))
-                    inComing_Edges.push_back(WeightedEdge(cor.first, vertex, cor.second.find(vertex)->second));
+                    inComing_Edges.push_back(WeightedEdge<T>(cor.first, vertex, cor.second.find(vertex)->second));
         return inComing_Edges;
     }
     virtual std::vector<WeightedEdge<T>> GetOutgoingEdges(int vertex) const {
@@ -91,7 +91,7 @@ public:
         if(ContainsVertex(vertex))
             if(WeightedEdges.count(vertex))
                 for(auto cor : WeightedEdges.find(vertex)->second)
-                    outGoing_Edges.push_back(WeightedEdge(vertex, cor.first, cor.second));
+                    outGoing_Edges.push_back(WeightedEdge<T>(vertex, cor.first, cor.second));
         return outGoing_Edges;
     }
     virtual int GetDegree(int vertex) const{
