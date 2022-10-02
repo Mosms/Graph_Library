@@ -2,6 +2,7 @@
 #include <DataStructures/UndirectedGraph.h>
 #include <cassert>
 #include <iostream>
+#include <cstring>
 int main()
 {
     UndirectedGraph g; // 创建一张新的图
@@ -24,13 +25,13 @@ int main()
         std::cout<<i<<std::endl;
     std::cout<<g.GetDegree(1)<<std::endl;
 
-    UndirectedWeightedGraph<int> w;
+    UndirectedWeightedGraph<std::string> w;
     assert(w.AddVertex(1)==true);
     assert(w.AddVertex(2)==true);
     assert(w.RemoveEdge(1,2)==false);
     assert(w.ContainsEdge(1,2)==false);
-    assert(w.AddEdge(1,2,1)==true);
-    assert(w.GetWeight(2,1)==1);
+    assert(w.AddEdge(1,2,"yes")==true);
+    assert(w.GetWeight(2,1)=="yes");
     for(auto i : w.GetNeighbors(1))
         std::cout<<i<<std::endl;
     for(auto i : w.GetIncomingEdges(1))

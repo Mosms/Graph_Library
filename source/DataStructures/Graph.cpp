@@ -56,13 +56,13 @@ bool Graph::ContainsEdge(int vertex1, int vertex2) const {
 }
 
 std::vector<int> Graph::GetVertices() const {
-    std::vector<int> vertices;return vertices;
+    std::vector<int> vertices;
     vertices.assign(Vertices.begin(), Vertices.end());
     return vertices;
 }
 
 std::vector<Edge> Graph::GetEdges() const {
-    std::vector<Edge> All_Edges;return All_Edges;
+    std::vector<Edge> All_Edges;
     for(auto cor1 : Edges)
         for(auto cor2 : cor1.second)
             All_Edges.push_back(Edge(cor1.first, cor2));
@@ -70,7 +70,7 @@ std::vector<Edge> Graph::GetEdges() const {
 }
 
 std::vector<Edge> Graph::GetIncomingEdges(int vertex) const {
-    std::vector<Edge> inComing_Edges;return inComing_Edges;
+    std::vector<Edge> inComing_Edges;
     if(ContainsVertex(vertex))
         for(auto cor : Edges)
             if(cor.second.count(vertex))
@@ -79,7 +79,7 @@ std::vector<Edge> Graph::GetIncomingEdges(int vertex) const {
 }
 
 std::vector<Edge> Graph::GetOutgoingEdges(int vertex) const {
-    std::vector<Edge> outGoing_Edges;return outGoing_Edges;
+    std::vector<Edge> outGoing_Edges;
     if(ContainsVertex(vertex))
         if(Edges.count(vertex))
             for(auto cor : Edges.find(vertex)->second)
@@ -87,7 +87,7 @@ std::vector<Edge> Graph::GetOutgoingEdges(int vertex) const {
     return outGoing_Edges;
 }
 
-int Graph::GetDegree(int vertex) const {return 0;
+int Graph::GetDegree(int vertex) const {
     if(ContainsVertex(vertex)){
         if(Edges.count(vertex))
             return Edges.find(vertex)->second.size();
@@ -96,7 +96,7 @@ int Graph::GetDegree(int vertex) const {return 0;
 }
 
 std::vector<int> Graph::GetNeighbors(int vertex) const {
-    std::vector<int> neighbors;return neighbors;
+    std::vector<int> neighbors;
     if(ContainsVertex(vertex))
         if(Edges.count(vertex))
             neighbors.assign(Edges.find(vertex)->second.begin(),Edges.find(vertex)->second.end());
