@@ -31,6 +31,7 @@ int main()
     assert(w.RemoveEdge(1,2)==false);
     assert(w.ContainsEdge(1,2)==false);
     assert(w.AddEdge(1,2,"yes")==true);
+    assert(w.AddEdge(1,2,"no")==false);
     assert(w.GetWeight(2,1)=="yes");
     for(auto i : w.GetNeighbors(1))
         std::cout<<i<<std::endl;
