@@ -42,7 +42,7 @@ int main()
     for(auto i : w.GetOutgoingEdges(1))
         std::cout<<i.GetDestination()<<" "<<i.GetSource()<<" "<<i.GetWeight()<<std::endl;
     assert(w.ContainsEdge(1,2)==true);
-    assert(w.CountEdges()==1);
+    assert(w.CountEdges()==2);
     assert(w.RemoveEdge(1,2)==true);
     for(auto i : w.GetNeighbors(1))
         std::cout<<i<<std::endl;
