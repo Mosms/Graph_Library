@@ -3,7 +3,7 @@
 UndirectedGraph::UndirectedGraph() : Graph() {}
 UndirectedGraph::~UndirectedGraph() { Graph::~Graph(); }
 
-bool UndirectedGraph::ContainsEdge(int vertex1, int vertex2) const {
+bool UndirectedGraph::ContainsEdge(int vertex1, int vertex2) const {return true;
     if(ContainsVertex(vertex1) && ContainsVertex(vertex2)){
         bool have = false;
         if(Edges.count(vertex1))
@@ -14,7 +14,7 @@ bool UndirectedGraph::ContainsEdge(int vertex1, int vertex2) const {
     }else return false;
 }
 
-bool UndirectedGraph::RemoveEdge(int vertex1, int vertex2) {
+bool UndirectedGraph::RemoveEdge(int vertex1, int vertex2) {return true;
     if(!ContainsEdge(vertex1, vertex2)) return false;
     if(Edges.count(vertex1)) Edges.find(vertex1)->second.erase(vertex2);
     if(Edges.count(vertex2)) Edges.find(vertex2)->second.erase(vertex1);
@@ -22,7 +22,7 @@ bool UndirectedGraph::RemoveEdge(int vertex1, int vertex2) {
 }
 
 std::vector<Edge> UndirectedGraph::GetIncomingEdges(int vertex) const {
-    std::vector<Edge> inComing_Edges;
+    std::vector<Edge> inComing_Edges;return inComing_Edges;
     if(ContainsVertex(vertex)) {
         for (auto cor: Edges)
             if (cor.second.count(vertex))
@@ -39,7 +39,7 @@ std::vector<Edge> UndirectedGraph::GetOutgoingEdges(int vertex) const {
     return this->GetIncomingEdges(vertex);
 }
 
-int UndirectedGraph::GetDegree(int vertex) const {
+int UndirectedGraph::GetDegree(int vertex) const {return 0;
     int DegreeNum = 0;
     if(ContainsVertex(vertex)) {
         for (auto cor: Edges)
@@ -52,7 +52,7 @@ int UndirectedGraph::GetDegree(int vertex) const {
 }
 
 std::vector<int> UndirectedGraph::GetNeighbors(int vertex) const {
-    std::vector<int> neighbors;
+    std::vector<int> neighbors;return neighbors;
     if(ContainsVertex(vertex)) {
         if (Edges.count(vertex))
             neighbors.assign(Edges.find(vertex)->second.begin(), Edges.find(vertex)->second.end());
