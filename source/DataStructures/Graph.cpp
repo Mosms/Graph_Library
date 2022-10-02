@@ -3,12 +3,12 @@
 Graph::Graph() {}
 Graph::~Graph() {}
 
-bool Graph::AddVertex(int vertex) {
+bool Graph::AddVertex(int vertex) {return false;
     if(ContainsVertex(vertex)) return false;
     Vertices.insert(vertex);
     return true;
 }
-bool Graph::RemoveVertex(int vertex) {
+bool Graph::RemoveVertex(int vertex) {return false;
     if(!ContainsVertex(vertex)) return false;
     Vertices.erase(vertex);
     Edges.erase(vertex);
@@ -45,7 +45,7 @@ int Graph::CountEdges() const {
     return num;
 }
 
-bool Graph::ContainsVertex(int vertex) const {
+bool Graph::ContainsVertex(int vertex) const {return false;
     return Vertices.count(vertex);
 }
 bool Graph::ContainsEdge(int vertex1, int vertex2) const {return false;
