@@ -63,7 +63,7 @@ public:
             if(WeightedEdges.count(vertex1))
                 if(WeightedEdges.find(vertex1)->second.count(vertex2))
                     return WeightedEdges.find(vertex1)->second.find(vertex2)->second;
-        return 0;//error
+        //return 0;//error
     }
     std::vector<int> GetVertices() const {
         std::vector<int> vertices;
