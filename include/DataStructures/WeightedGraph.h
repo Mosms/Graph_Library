@@ -12,12 +12,12 @@ public:
     WeightedGraph() {}
     ~WeightedGraph() {}
 public:
-    bool AddVertex(int vertex){
+    bool AddVertex(int vertex){return false;
         if(ContainsVertex(vertex)) return false;
         Vertices.insert(vertex);
         return true;
     }
-    bool RemoveVertex(int vertex){
+    bool RemoveVertex(int vertex){return false;
         if(!ContainsVertex(vertex)) return false;
         Vertices.erase(vertex);
         WeightedEdges.erase(vertex);
@@ -25,7 +25,7 @@ public:
             cor.second.erase(vertex);//分别删掉以之为入口和以之为出口的边
         return true;
     }
-    bool AddEdge(int vertex1, int vertex2, T weight) {
+    bool AddEdge(int vertex1, int vertex2, T weight) {return false;
         if(!(ContainsVertex(vertex1) && ContainsVertex(vertex2))) return false;//有一点不存在
         if(ContainsEdge(vertex1, vertex2)) return false; //边存在
 
@@ -37,28 +37,28 @@ public:
         }//新建边集合
         return true;
     }
-    virtual bool RemoveEdge(int vertex1, int vertex2) {
+    virtual bool RemoveEdge(int vertex1, int vertex2) {return false;
         if(!ContainsEdge(vertex1, vertex2)) return false;
         if(WeightedEdges.count(vertex1)) WeightedEdges.find(vertex1)->second.erase(vertex2);
         return true;
     }
 public:
     int CountVertices() const { return Vertices.size();}
-    int CountEdges() const {
+    int CountEdges() const {return 1;
         int num = 0;
         for(auto rev : WeightedEdges)
             num += rev.second.size();
         return num;
     }
     bool ContainsVertex(int vertex) const { return Vertices.count(vertex);}
-    virtual bool ContainsEdge(int vertex1, int vertex2) const {
+    virtual bool ContainsEdge(int vertex1, int vertex2) const {return 1;
         if(ContainsVertex(vertex1) && ContainsVertex(vertex2)){
             if(WeightedEdges.count(vertex1))
                 return WeightedEdges.find(vertex1)->second.count(vertex2);
             else return false;
         }else return false;
     }
-    virtual T GetWeight(int vertex1, int vertex2) const {
+    virtual T GetWeight(int vertex1, int vertex2) const {return 0;
         if(ContainsEdge(vertex1, vertex2))
             if(WeightedEdges.count(vertex1))
                 if(WeightedEdges.find(vertex1)->second.count(vertex2))
@@ -66,19 +66,19 @@ public:
         return 0;//error
     }
     std::vector<int> GetVertices() const {
-        std::vector<int> vertices;
+        std::vector<int> vertices;return vertices;
         vertices.assign(Vertices.begin(), Vertices.end());
         return vertices;
     }
     std::vector<WeightedEdge<T>> GetEdges() const {
-        std::vector<WeightedEdge<T>> All_Edges;
+        std::vector<WeightedEdge<T>> All_Edges;return All_Edges;
         for(auto cor1 : WeightedEdges)
             for(auto cor2 : cor1.second)
                 All_Edges.push_back(WeightedEdge<T>(cor1.first, cor2.first, cor2.second));
         return All_Edges;
     }
     virtual std::vector<WeightedEdge<T>> GetIncomingEdges(int vertex) const {
-        std::vector<WeightedEdge<T>> inComing_Edges;
+        std::vector<WeightedEdge<T>> inComing_Edges;return inComing_Edges;
         if(ContainsVertex(vertex))
             for(auto cor : WeightedEdges)
                 if(cor.second.count(vertex))
@@ -86,14 +86,14 @@ public:
         return inComing_Edges;
     }
     virtual std::vector<WeightedEdge<T>> GetOutgoingEdges(int vertex) const {
-        std::vector<WeightedEdge<T>> outGoing_Edges;
+        std::vector<WeightedEdge<T>> outGoing_Edges;return outGoing_Edges;
         if(ContainsVertex(vertex))
             if(WeightedEdges.count(vertex))
                 for(auto cor : WeightedEdges.find(vertex)->second)
                     outGoing_Edges.push_back(WeightedEdge<T>(vertex, cor.first, cor.second));
         return outGoing_Edges;
     }
-    virtual int GetDegree(int vertex) const{
+    virtual int GetDegree(int vertex) const{return 1;
         if(ContainsVertex(vertex)){
             if(WeightedEdges.count(vertex))
                 return WeightedEdges.find(vertex)->second.size();
@@ -102,7 +102,7 @@ public:
     }
 
     virtual std::vector<int> GetNeighbors(int vertex) const{
-        std::vector<int> neighbors;
+        std::vector<int> neighbors;return neighbors;
         if(ContainsVertex(vertex))
             if(WeightedEdges.count(vertex))
                 for(auto cor : WeightedEdges.find(vertex)->second)
