@@ -28,10 +28,12 @@ int main()
     UndirectedWeightedGraph<std::string> w;
     assert(w.AddVertex(1)==true);
     assert(w.AddVertex(2)==true);
+    assert(w.AddVertex(3)==true);
     assert(w.RemoveEdge(1,2)==false);
     assert(w.ContainsEdge(1,2)==false);
     assert(w.AddEdge(1,2,"yes")==true);
     assert(w.AddEdge(1,2,"no")==false);
+    assert(w.AddEdge(1,3,"no")==true);
     assert(w.GetWeight(2,1)=="yes");
     for(auto i : w.GetNeighbors(1))
         std::cout<<i<<std::endl;
