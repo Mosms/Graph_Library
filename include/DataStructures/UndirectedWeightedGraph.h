@@ -27,14 +27,15 @@ public:
         }else return false;
     }
     virtual T GetWeight(int vertex1, int vertex2) const override{
-        if (ContainsEdge(vertex1, vertex2))
+        if (ContainsEdge(vertex1, vertex2)) {
             if (this->WeightedEdges.count(vertex1)) {
-                if(this->WeightedEdges.find(vertex1)->second.count(vertex2))
+                if (this->WeightedEdges.find(vertex1)->second.count(vertex2))
                     return this->WeightedEdges.find(vertex1)->second.find(vertex2)->second;
             }
-        if(this->WeightedEdges.count(vertex2))
-            if(this->WeightedEdges.find(vertex2)->second.count(vertex1))
-                return this->WeightedEdges.find(vertex2)->second.find(vertex1)->second;
+            if (this->WeightedEdges.count(vertex2))
+                if (this->WeightedEdges.find(vertex2)->second.count(vertex1))
+                    return this->WeightedEdges.find(vertex2)->second.find(vertex1)->second;
+        }
         return -1;//error
     }
 
