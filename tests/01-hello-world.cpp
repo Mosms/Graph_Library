@@ -47,5 +47,14 @@ int main()
     for(auto i : w.GetOutgoingEdges(1))
         std::cout<<i.GetDestination()<<" "<<i.GetSource()<<" "<<i.GetWeight()<<std::endl;
 
+    Graph r;
+    assert(r.AddVertex(1)==true);
+    assert(r.AddVertex(2)==true);
+    assert(r.AddVertex(3)==true);
+    assert(r.AddEdge(1,2)==true);
+    assert(r.AddEdge(1,3)==true);
+    for(auto cor : r.GetNeighbors(1))
+        std::cout << cor << std::endl;
+
     return 0;
 }
