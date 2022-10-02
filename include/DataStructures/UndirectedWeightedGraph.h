@@ -8,7 +8,7 @@ public:
     UndirectedWeightedGraph() {}
     ~UndirectedWeightedGraph() {}
 public:
-    virtual bool RemoveEdge(int vertex1, int vertex2) override{return false;
+    virtual bool RemoveEdge(int vertex1, int vertex2) override{
         if(!ContainsEdge(vertex1, vertex2)) return false;
         if(this->WeightedEdges.count(vertex1))
             this->WeightedEdges.find(vertex1)->second.erase(vertex2);
@@ -16,7 +16,7 @@ public:
             this->WeightedEdges.find(vertex2)->second.erase(vertex1);
         return true;
     }
-    virtual bool ContainsEdge(int vertex1, int vertex2) const override{return false;
+    virtual bool ContainsEdge(int vertex1, int vertex2) const override{
         if(this->ContainsVertex(vertex1) && this->ContainsVertex(vertex2)){
             bool have = false;
             if(this->WeightedEdges.count(vertex1))
@@ -26,7 +26,7 @@ public:
             return have;
         }else return false;
     }
-    virtual T GetWeight(int vertex1, int vertex2) const override{return 1;
+    virtual T GetWeight(int vertex1, int vertex2) const override{
         if (ContainsEdge(vertex1, vertex2)) {
             if (this->WeightedEdges.count(vertex1)) {
                 if (this->WeightedEdges.find(vertex1)->second.count(vertex2))
@@ -41,7 +41,7 @@ public:
 
 public:
     virtual std::vector<WeightedEdge<T>> GetIncomingEdges(int vertex) const override{
-        std::vector<WeightedEdge<T>> inComing_Edges;return inComing_Edges;
+        std::vector<WeightedEdge<T>> inComing_Edges;
         if(this->ContainsVertex(vertex)) {
             for (auto cor: this->WeightedEdges)
                 if (cor.second.count(vertex))
@@ -56,7 +56,7 @@ public:
     virtual std::vector<WeightedEdge<T>> GetOutgoingEdges(int vertex) const override{
         return this->GetIncomingEdges(vertex);
     }
-    virtual int GetDegree(int vertex) const override{return 1;
+    virtual int GetDegree(int vertex) const override{
         int DegreeNum = 0;
         if(this->ContainsVertex(vertex)) {
             for (auto cor: this->WeightedEdges)
@@ -68,7 +68,7 @@ public:
         return DegreeNum;
     }
     virtual std::vector<int> GetNeighbors(int vertex) const override {
-        std::vector<int> neighbors;return neighbors;
+        std::vector<int> neighbors;
         if(this->ContainsVertex(vertex)) {
             if(this->WeightedEdges.count(vertex))
                 for(auto cor : this->WeightedEdges.find(vertex)->second)
