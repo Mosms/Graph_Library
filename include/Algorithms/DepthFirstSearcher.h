@@ -21,11 +21,12 @@ private:
 template <typename TGraph>
 void DepthFirstSearcher<TGraph>::visitsAction(const TGraph *graph, int nowvis, std::function<void(int)> action,
                                               std::set<int> *check) {
-    if(graph->ContainsVertex(nowvis) && !check->count(nowvis))
+    if(graph->ContainsVertex(nowvis) && !check->count(nowvis)) {
         action(nowvis);
-    check->emplace(nowvis);
-    for(auto cor : graph->GetNeighbors(nowvis))
-        visitsAction(graph, cor, action, check);
+        check->emplace(nowvis);
+        for (auto cor: graph->GetNeighbors(nowvis))
+            visitsAction(graph, cor, action, check);
+    }
     return;
 }
 
@@ -33,14 +34,15 @@ template <typename TGraph>
 std::optional<int>
 DepthFirstSearcher<TGraph>::visitsFind(const TGraph *graph, int nowvis, std::function<bool(int)> predicate,
                                        std::set<int> *check) {
-    if(graph->ContainsVertex(nowvis) && !check->count(nowvis))
-        if(predicate(nowvis))
+    if(graph->ContainsVertex(nowvis) && !check->count(nowvis)) {
+        if (predicate(nowvis))
             return nowvis;
-    check->emplace(nowvis);
-    for(auto cor : graph->GetNeighbors(nowvis)) {
-        std::optional<int> Ret = visitsFind(graph, cor, predicate, check);
-        if (Ret != std::nullopt)
-            return Ret;
+        check->emplace(nowvis);
+        for (auto cor: graph->GetNeighbors(nowvis)) {
+            std::optional<int> Ret = visitsFind(graph, cor, predicate, check);
+            if (Ret != std::nullopt)
+                return Ret;
+        }
     }
     return std::nullopt;
 }
