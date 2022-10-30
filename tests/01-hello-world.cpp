@@ -62,5 +62,12 @@ int main()
     for(auto cor : r.GetNeighbors(1))
         std::cout << cor << std::endl;
 
+    std::function<void(int)> prin = [](int a){ printf("%d", a); };
+
+    BreadthFirstSearcher<Graph> check1;
+    check1.VisitAllVertices(&r, 1, prin);
+    DepthFirstSearcher<Graph> check2;
+    check2.VisitAllVertices(&r, 1, prin);
+
     return 0;
 }
