@@ -15,6 +15,9 @@ private:
     static void visitsAction(const TGraph *graph, int nowvis, std::function<void(int)> action, std::set<int> *check);
     static std::optional<int> visitsFind(const TGraph *graph, int nowvis, std::function<bool(int)> predicate, std::set<int> *check);
 };
+
+
+
 template <typename TGraph>
 void DepthFirstSearcher<TGraph>::visitsAction(const TGraph *graph, int nowvis, std::function<void(int)> action,
                                               std::set<int> *check) {
