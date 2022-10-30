@@ -21,15 +21,15 @@ void BreadthFirstSearcher<TGraph>::VisitAllVertices(const TGraph *graph, int sta
     std::queue<int> ToVisit({start});
     while(!ToVisit.empty()){
         int nowVisit = ToVisit.front();
-        ToVisit.pop();
-        visited.emplace(nowVisit);
 
-        if(graph->ContainsVertex(nowVisit)) {
+        if(graph->ContainsVertex(nowVisit) && !visited.count(nowVisit)) {
             action(nowVisit);
             for(auto cor : graph->GetNeighbors(nowVisit))
                 if(!visited.count(cor))
                     ToVisit.push(cor);
         }
+        ToVisit.pop();
+        visited.emplace(nowVisit);
     }
     return;
 }
@@ -41,16 +41,16 @@ BreadthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *graph, int start, st
     std::queue<int> ToVisit({start});
     while(!ToVisit.empty()){
         int nowVisit = ToVisit.front();
-        ToVisit.pop();
-        visited.emplace(nowVisit);
-
-        if(graph->ContainsVertex(nowVisit)) {
+        
+        if(graph->ContainsVertex(nowVisit) && !visited.count(nowVisit)) {
             if(predicate(nowVisit))
                 return nowVisit;
             for (auto cor: graph->GetNeighbors(nowVisit))
                 if (!visited.count(cor))
                     ToVisit.push(cor);
         }
+        ToVisit.pop();
+        visited.emplace(nowVisit);
     }
     return std::nullopt;
 }
