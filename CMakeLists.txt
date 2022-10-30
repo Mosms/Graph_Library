@@ -6,7 +6,7 @@ find_package(Git)
 set(CMAKE_CXX_STANDARD 17)
 include_directories("include")
 file(GLOB sources "source/**/*.cpp")
-add_library(GraphLibrary ${sources} include/DataStructures/WeightedEdge.h include/DataStructures/WeightedGraph.h source/DataStructures/WeightedEdge.cpp source/DataStructures/WeightedGraph.cpp include/DataStructures/UndirectedGraph.h source/DataStructures/UndirectedGraph.cpp include/DataStructures/UndirectedWeightedGraph.h source/DataStructures/UndirectedWeightedGraph.cpp)
+add_library(GraphLibrary ${sources} include/DataStructures/WeightedEdge.h include/DataStructures/WeightedGraph.h source/DataStructures/WeightedEdge.cpp source/DataStructures/WeightedGraph.cpp include/DataStructures/UndirectedGraph.h source/DataStructures/UndirectedGraph.cpp include/DataStructures/UndirectedWeightedGraph.h source/DataStructures/UndirectedWeightedGraph.cpp source/Algorithms/BreadthFirstSearcher.cpp source/Algorithms/DepthFirstSearcher.cpp)
 
 add_custom_target(GitTraceAdd
         COMMAND "${GIT_EXECUTABLE}" add -A . --ignore-errors
