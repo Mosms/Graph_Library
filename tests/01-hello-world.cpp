@@ -1,5 +1,7 @@
 #include <DataStructures/UndirectedWeightedGraph.h>
 #include <DataStructures/UndirectedGraph.h>
+#include <Algorithms/DepthFirstSearcher.h>
+#include <Algorithms/BreadthFirstSearcher.h>
 #include <cassert>
 #include <iostream>
 #include <cstring>
