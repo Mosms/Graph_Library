@@ -38,7 +38,7 @@ DepthFirstSearcher<TGraph>::visitsFind(const TGraph *graph, int nowvis, std::fun
             return nowvis;
     check->emplace(nowvis);
     for(auto cor : graph->GetNeighbors(nowvis)) {
-        std::optional<int> Ret = visitsAction(graph, cor, predicate, check);
+        std::optional<int> Ret = visitsFind(graph, cor, predicate, check);
         if (Ret != std::nullopt)
             return Ret;
     }
