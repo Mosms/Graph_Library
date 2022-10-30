@@ -36,7 +36,7 @@ public:
                 if (this->WeightedEdges.find(vertex2)->second.count(vertex1))
                     return this->WeightedEdges.find(vertex2)->second.find(vertex1)->second;
         }
-        //return -1;//error
+        return 0;//error
     }
 
 public:
