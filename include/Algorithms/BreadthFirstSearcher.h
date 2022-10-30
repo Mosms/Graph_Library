@@ -41,7 +41,7 @@ BreadthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *graph, int start, st
     std::queue<int> ToVisit({start});
     while(!ToVisit.empty()){
         int nowVisit = ToVisit.front();
-        
+
         if(graph->ContainsVertex(nowVisit) && !visited.count(nowVisit)) {
             if(predicate(nowVisit))
                 return nowVisit;
