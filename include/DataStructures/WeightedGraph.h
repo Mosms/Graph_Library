@@ -36,14 +36,14 @@ protected:
 
 
 
-template <typename T>
+template<class T>
 bool WeightedGraph<T>::AddVertex(int vertex) {
     if(ContainsVertex(vertex)) return false;
     Vertices.insert(vertex);
     return true;
 }
 
-template <typename T>
+template<class T>
 bool WeightedGraph<T>::RemoveVertex(int vertex) {
     if(!ContainsVertex(vertex)) return false;
     Vertices.erase(vertex);
@@ -52,7 +52,7 @@ bool WeightedGraph<T>::RemoveVertex(int vertex) {
         cor.second.erase(vertex);//分别删掉以之为入口和以之为出口的边
     return true;
 }
-template <typename T>
+template<class T>
 bool WeightedGraph<T>::AddEdge(int vertex1, int vertex2, T weight) {
     if(!(ContainsVertex(vertex1) && ContainsVertex(vertex2))) return false;//有一点不存在
     if(ContainsEdge(vertex1, vertex2)) return false; //边存在
@@ -65,28 +65,28 @@ bool WeightedGraph<T>::AddEdge(int vertex1, int vertex2, T weight) {
     }//新建边集合
     return true;
 }
-template <typename T>
+template<class T>
 bool WeightedGraph<T>::RemoveEdge(int vertex1, int vertex2) {
     if(!ContainsEdge(vertex1, vertex2)) return false;
     if(WeightedEdges.count(vertex1)) WeightedEdges.find(vertex1)->second.erase(vertex2);
     return true;
 }
-template <typename T>
+template<class T>
 int WeightedGraph<T>::CountVertices() const {
     return Vertices.size();
 }
-template <typename T>
+template<class T>
 int WeightedGraph<T>::CountEdges() const {
     int num = 0;
     for(auto rev : WeightedEdges)
         num += rev.second.size();
     return num;
 }
-template <typename T>
+template<class T>
 bool WeightedGraph<T>::ContainsVertex(int vertex) const {
     return Vertices.count(vertex);
 }
-template <typename T>
+template<class T>
 bool WeightedGraph<T>::ContainsEdge(int vertex1, int vertex2) const {
     if(ContainsVertex(vertex1) && ContainsVertex(vertex2)){
         if(WeightedEdges.count(vertex1))
@@ -94,7 +94,7 @@ bool WeightedGraph<T>::ContainsEdge(int vertex1, int vertex2) const {
         else return false;
     }else return false;
 }
-template <typename T>
+template<class T>
 T WeightedGraph<T>::GetWeight(int vertex1, int vertex2) const {
     if(ContainsEdge(vertex1, vertex2))
         if(WeightedEdges.count(vertex1))
@@ -102,13 +102,13 @@ T WeightedGraph<T>::GetWeight(int vertex1, int vertex2) const {
                 return WeightedEdges.find(vertex1)->second.find(vertex2)->second;
     return 0;//error
 }
-template <typename T>
+template<class T>
 std::vector<int> WeightedGraph<T>::GetVertices() const {
     std::vector<int> vertices;
     vertices.assign(Vertices.begin(), Vertices.end());
     return vertices;
 }
-template <typename T>
+template<class T>
 std::vector<WeightedEdge<T>> WeightedGraph<T>::GetEdges() const {
     std::vector<WeightedEdge<T>> All_Edges;
     for(auto cor1 : WeightedEdges)
@@ -116,7 +116,7 @@ std::vector<WeightedEdge<T>> WeightedGraph<T>::GetEdges() const {
             All_Edges.push_back(WeightedEdge<T>(cor1.first, cor2.first, cor2.second));
     return All_Edges;
 }
-template <typename T>
+template<class T>
 std::vector<WeightedEdge<T>> WeightedGraph<T>::GetIncomingEdges(int vertex) const {
     std::vector<WeightedEdge<T>> inComing_Edges;
     if(ContainsVertex(vertex))
@@ -125,7 +125,7 @@ std::vector<WeightedEdge<T>> WeightedGraph<T>::GetIncomingEdges(int vertex) cons
                 inComing_Edges.push_back(WeightedEdge<T>(cor.first, vertex, cor.second.find(vertex)->second));
     return inComing_Edges;
 }
-template <typename T>
+template<class T>
 std::vector<WeightedEdge<T>> WeightedGraph<T>::GetOutgoingEdges(int vertex) const {
     std::vector<WeightedEdge<T>> outGoing_Edges;
     if(ContainsVertex(vertex))
@@ -134,7 +134,7 @@ std::vector<WeightedEdge<T>> WeightedGraph<T>::GetOutgoingEdges(int vertex) cons
                 outGoing_Edges.push_back(WeightedEdge<T>(vertex, cor.first, cor.second));
     return outGoing_Edges;
 }
-template <typename T>
+template<class T>
 int WeightedGraph<T>::GetDegree(int vertex) const{
     if(ContainsVertex(vertex)){
         if(WeightedEdges.count(vertex))
@@ -142,7 +142,7 @@ int WeightedGraph<T>::GetDegree(int vertex) const{
         else return 0;
     }else return 0;
 }
-template <typename T>
+template<class T>
 std::vector<int> WeightedGraph<T>::GetNeighbors(int vertex) const{
     std::vector<int> neighbors;
     if(ContainsVertex(vertex))
