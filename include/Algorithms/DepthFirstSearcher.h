@@ -5,7 +5,7 @@
 #include <optional>
 #include <set>
 
-template <typename TGraph>
+template <class TGraph>
 class DepthFirstSearcher {
 public:
     static void VisitAllVertices(const TGraph *graph, int start, std::function<void(int)> action);
@@ -18,7 +18,7 @@ private:
 
 
 
-template <typename TGraph>
+template <class TGraph>
 void DepthFirstSearcher<TGraph>::visitsAction(const TGraph *graph, int nowvis, std::function<void(int)> action,
                                               std::set<int> *check) {
     if(graph->ContainsVertex(nowvis) && !check->count(nowvis)) {
@@ -30,7 +30,7 @@ void DepthFirstSearcher<TGraph>::visitsAction(const TGraph *graph, int nowvis, s
     return;
 }
 
-template <typename TGraph>
+template <class TGraph>
 std::optional<int>
 DepthFirstSearcher<TGraph>::visitsFind(const TGraph *graph, int nowvis, std::function<bool(int)> predicate,
                                        std::set<int> *check) {
@@ -47,14 +47,14 @@ DepthFirstSearcher<TGraph>::visitsFind(const TGraph *graph, int nowvis, std::fun
     return std::nullopt;
 }
 
-template <typename TGraph>
+template <class TGraph>
 void DepthFirstSearcher<TGraph>::VisitAllVertices(const TGraph *graph, int start, std::function<void(int)> action) {
     std::set<int> visited;
     visitsAction(graph, start, action, &visited);
     return;
 }
 
-template <typename TGraph>
+template <class TGraph>
 std::optional<int> DepthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *graph, int start, std::function<bool(int)> predicate) {
     std::set<int> visited;
     return visitsFind(graph, start, predicate, &visited);
