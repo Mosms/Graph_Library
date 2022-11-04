@@ -9,11 +9,12 @@ template <class TGraph>
 class DepthFirstSearcher {
 public:
     static void VisitAllVertices(const TGraph *graph, int start, std::function<void(int)> action);
-    static std::optional<int> FindFirstVertex(const TGraph *graph, int start, std::function<bool(int)> predicate);
+    static std::optional<int> TryFindFirstVertex(const TGraph *graph, int start, std::function<bool(int)> predicate);
 
 private:
     static void visitsAction(const TGraph *graph, int nowvis, std::function<void(int)> action, std::set<int> *check);
     static std::optional<int> visitsFind(const TGraph *graph, int nowvis, std::function<bool(int)> predicate, std::set<int> *check);
+
 };
 
 
@@ -55,7 +56,7 @@ void DepthFirstSearcher<TGraph>::VisitAllVertices(const TGraph *graph, int start
 }
 
 template <class TGraph>
-std::optional<int> DepthFirstSearcher<TGraph>::FindFirstVertex(const TGraph *graph, int start, std::function<bool(int)> predicate) {
+std::optional<int> DepthFirstSearcher<TGraph>::TryFindFirstVertex(const TGraph *graph, int start, std::function<bool(int)> predicate) {
     std::set<int> visited;
     return visitsFind(graph, start, predicate, &visited);
 }
