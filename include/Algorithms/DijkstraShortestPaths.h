@@ -25,9 +25,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         auto nowVisit = ExtractMin.top();
         ExtractMin.pop();
 
-        if(vis.count(nowVisit.first))
-            continue;
-        else vis.insert(nowVisit.first);
+
 
         for(auto cor : graph->GetOutgoingEdges(nowVisit.first)){
             assert(nowVisit.second == (DijkstraShortestPaths<TGraph, TValue>::VertexDValue).find(cor.GetSource())->second);
@@ -45,6 +43,9 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
                 ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
             }
         }
+        if(vis.count(nowVisit.first))
+            continue;
+        else vis.insert(nowVisit.first);
 
     }
 }
