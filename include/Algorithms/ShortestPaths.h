@@ -80,7 +80,7 @@ template <template<class> class TGraph, class TValue>
                 auto nowVisit = ExtractMin.top();
                 ExtractMin.pop();
                 if(VertexDValue.count(nowVisit.first))//没有的话代表不可达，结果为0
-                    for(auto cor : graph->GetOutgoingEdges(nowVisit))
+                    for(auto cor : graph->GetOutgoingEdges(nowVisit.first))
                         RelaxEdge(cor.GetSource(), cor.GetDestination(), cor.GetWeight());
             }
         }
