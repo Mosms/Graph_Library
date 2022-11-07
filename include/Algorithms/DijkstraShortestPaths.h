@@ -27,7 +27,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
 
         if(vis.count(nowVisit.first))
             continue;
-        else vis.count(nowVisit.first);
+        else vis.insert(nowVisit.first);
 
         for(auto cor : graph->GetOutgoingEdges(nowVisit.first)){
             assert(nowVisit.second == (DijkstraShortestPaths<TGraph, TValue>::VertexDValue).find(cor.GetSource())->second);
