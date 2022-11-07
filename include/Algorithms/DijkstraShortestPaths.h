@@ -26,7 +26,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
 
         if(DijkstraShortestPaths<TGraph, TValue>::VertexDValue.count(nowVisit.first))//没有的话代表不可达，结果为0
             for(auto cor : graph->GetOutgoingEdges(nowVisit.first)){
-                assert(cor.GetSource() == nowVisit.first);
+                //assert(cor.GetSource() == nowVisit.first);
                 auto ValueDNew = DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetSource())->second + cor.GetWeight();
                 if(DijkstraShortestPaths<TGraph, TValue>::VertexDValue.count(cor.GetDestination())){
                     if(ValueDNew < DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetDestination())->second){
