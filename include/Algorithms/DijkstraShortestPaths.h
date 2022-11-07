@@ -28,7 +28,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
     std::priority_queue<std::pair<int, std::map<int, TValue>*>, std::vector<std::pair<int, std::map<int, TValue>*>>, decltype(CompareDValue)> ExtractMin(CompareDValue);
     DijkstraShortestPaths<TGraph, TValue>::VertexDValue.insert(std::make_pair(source, TValue()));
     for(auto vercor : graph->GetVertices())
-        ExtractMin.push(std::make_pair(vercor, &DijkstraShortestPaths<TGraph, TValue>::VertexDValue));
+        ExtractMin.push(std::make_pair(vercor, &(DijkstraShortestPaths<TGraph, TValue>::VertexDValue)));
     while(!ExtractMin.empty()) {
         auto nowVisit = ExtractMin.top();
         ExtractMin.pop();
