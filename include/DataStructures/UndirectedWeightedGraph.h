@@ -61,7 +61,7 @@ std::vector<WeightedEdge<T>> UndirectedWeightedGraph<T>::GetIncomingEdges(int ve
         for (auto cor: this->WeightedEdges)
             if (cor.second.count(vertex))
                 if(cor.first != vertex)
-                    inComing_Edges.push_back(WeightedEdge<T>(cor.first, vertex, cor.second.find(vertex)->second));
+                    inComing_Edges.push_back(WeightedEdge<T>(vertex, cor.first, cor.second.find(vertex)->second));
         if (this->WeightedEdges.count(vertex))
             for (auto cor: this->WeightedEdges.find(vertex)->second)
                 inComing_Edges.push_back(WeightedEdge<T>(vertex, cor.first, cor.second));
