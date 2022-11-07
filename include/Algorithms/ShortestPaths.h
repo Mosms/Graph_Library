@@ -50,7 +50,7 @@ void ShortestPaths<TGraph, TValue>::RelaxEdge(int from, int to, TValue weight) {
     return;
 }
 template <template<class> class TGraph, class TValue>
-void ShortestPaths<TGraph, TValue>::ShortestPathAddVertex(int vertex, std::vector<int> *container) {
+void ShortestPaths<TGraph, TValue>::ShortestPathAddVertex(int vertex, std::vector<int> *container) const {
     if(vertex == Source){
         assert(container->empty());
         container->push_back(Source);
