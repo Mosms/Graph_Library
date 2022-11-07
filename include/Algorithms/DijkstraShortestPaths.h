@@ -26,13 +26,15 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         ExtractMin.pop();
         if(Visited.count(nowVisit.first))
             continue;
-        else Visited.insert(nowVisit.first);
+        else
+            Visited.insert(nowVisit.first);
+
         if(DijkstraShortestPaths<TGraph, TValue>::VertexDValue.count(nowVisit.first))//没有的话代表不可达，结果为0
             for(auto cor : graph->GetOutgoingEdges(nowVisit.first)){
+                assert(cor.GetSource() == nowVisit.first);
                 auto ValueDNew = DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetSource())->second + cor.GetWeight();
                 if(DijkstraShortestPaths<TGraph, TValue>::VertexDValue.count(cor.GetDestination())){
-                    auto ValueDBefore = DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetDestination())->second;
-                    if(ValueDNew < ValueDBefore){
+                    if(ValueDNew < DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetDestination())->second){
                         DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetDestination())->second = ValueDNew;
                         DijkstraShortestPaths<TGraph, TValue>::VertexPiValue.find(cor.GetDestination())->second = cor.GetSource();
                         ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
