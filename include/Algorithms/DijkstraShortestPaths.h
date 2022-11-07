@@ -15,7 +15,7 @@ public:
 template <template<class> class TGraph, class TValue>
 DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue> *graph, int source): ShortestPaths<TGraph, TValue>(graph, source){
     auto CompareDValue = [](std::pair<int, TValue> &a, std::pair<int, TValue> &b)->bool{
-        return a.second < b.second;
+        return a.second > b.second;
     };
     std::set<int> vis;
     std::priority_queue<std::pair<int, TValue>, std::vector<std::pair<int, TValue>>, decltype(CompareDValue)> ExtractMin(CompareDValue);
@@ -25,7 +25,9 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         auto nowVisit = ExtractMin.top();
         ExtractMin.pop();
 
-
+        if(vis.count(nowVisit.first))
+            continue;
+        else vis.insert(nowVisit.first);
 
         for(auto cor : graph->GetOutgoingEdges(nowVisit.first)){
             assert(nowVisit.second == (DijkstraShortestPaths<TGraph, TValue>::VertexDValue).find(cor.GetSource())->second);
@@ -43,10 +45,6 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
                 ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
             }
         }
-        if(vis.count(nowVisit.first))
-            continue;
-        else vis.insert(nowVisit.first);
-
     }
 }
 
