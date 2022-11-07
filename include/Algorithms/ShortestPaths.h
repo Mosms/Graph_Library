@@ -73,7 +73,7 @@ template <template<class> class TGraph, class TValue>
                 return true;
             };
             std::priority_queue<std::pair<int, std::map<int, TValue>*>, std::vector<std::pair<int, std::map<int, TValue>*>>, decltype(CompareDValue)> ExtractMin(CompareDValue);
-            VertexDValue.insert(source,TValue());
+            VertexDValue.insert(std::make_pair(source, TValue()));
             for(auto vercor : graph->GetVertices())
                 ExtractMin.push(std::make_pair(vercor, &VertexDValue));
             while(!ExtractMin.empty()) {
