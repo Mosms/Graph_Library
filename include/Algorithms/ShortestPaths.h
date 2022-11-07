@@ -41,32 +41,7 @@ void ShortestPaths<TGraph, TValue>::ShortestPathAddVertex(int vertex, std::vecto
     return;
 }
 template <template<class> class TGraph, class TValue>
-        ShortestPaths<TGraph, TValue>::ShortestPaths(const TGraph<TValue> *graph, int source): Source(source) {
-            /*auto CompareDValue = [](std::pair<int, std::map<int, TValue>*> &a, std::pair<int, std::map<int, TValue>*> &b)->bool{
-                auto NowMap = a.second;
-                assert(NowMap == b.second);
-                bool Havea = NowMap->count(a.first), Haveb = NowMap->count(b.first);
-                if(Havea && Haveb)
-                    return NowMap->find(a.first)->second < NowMap->find(b.first)->second;
-                else if(Havea && !Haveb)
-                    return true;
-                else if(!Havea && Haveb)
-                    return false;
-                return true;
-            };
-            std::priority_queue<std::pair<int, std::map<int, TValue>*>, std::vector<std::pair<int, std::map<int, TValue>*>>, decltype(CompareDValue)> ExtractMin(CompareDValue);
-            VertexDValue.insert(std::make_pair(source, TValue()));
-            for(auto vercor : graph->GetVertices())
-                ExtractMin.push(std::make_pair(vercor, &VertexDValue));
-            while(!ExtractMin.empty()) {
-                auto nowVisit = ExtractMin.top();
-                ExtractMin.pop();
-                if(VertexDValue.count(nowVisit.first))//没有的话代表不可达，结果为0
-                    for(auto cor : graph->GetOutgoingEdges(nowVisit.first))
-                        RelaxEdge(cor.GetSource(), cor.GetDestination(), cor.GetWeight());
-            }*/
-        }
-
+        ShortestPaths<TGraph, TValue>::ShortestPaths(const TGraph<TValue> *graph, int source): Source(source) {}
 template <template<class> class TGraph, class TValue>
         ShortestPaths<TGraph, TValue>::~ShortestPaths<TGraph, TValue>() {}
 template <template<class> class TGraph, class TValue>
