@@ -21,8 +21,9 @@ public:
     std::optional<std::vector<int>> TryGetShortestPathTo(int destination) const;
 
 private:
-    void RelaxEdge(int from, int to, TValue weight);
     void ShortestPathAddVertex(int vertex, std::vector<int>* container);
+protected:
+    void RelaxEdge(int from, int to, TValue weight);
 
 protected:
     std::map<int, TValue> VertexDValue;
