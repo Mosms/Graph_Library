@@ -30,7 +30,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         else vis.count(nowVisit.first);
 
         for(auto cor : graph->GetOutgoingEdges(nowVisit.first)){
-            assert(nowVisit.second == DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetSource())->second);
+            assert(nowVisit.second == (DijkstraShortestPaths<TGraph, TValue>::VertexDValue).find(cor.GetSource())->second);
             auto ValueDNew = DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetSource())->second + cor.GetWeight();
             if(DijkstraShortestPaths<TGraph, TValue>::VertexDValue.count(cor.GetDestination())){
                 if(ValueDNew < DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetDestination())->second){
