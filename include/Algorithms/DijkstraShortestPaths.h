@@ -34,7 +34,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         ExtractMin.pop();
         if(DijkstraShortestPaths<TGraph, TValue>::VertexDValue.count(nowVisit.first))//没有的话代表不可达，结果为0
             for(auto cor : graph->GetOutgoingEdges(nowVisit.first))
-                RelaxEdge(cor.GetSource(), cor.GetDestination(), cor.GetWeight());
+                DijkstraShortestPaths<TGraph, TValue>::RelaxEdge(cor.GetSource(), cor.GetDestination(), cor.GetWeight());
     }
 }
 
