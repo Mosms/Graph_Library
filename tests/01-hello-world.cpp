@@ -24,9 +24,6 @@ static void test1() {
         p = new DijkstraShortestPaths<WeightedGraph, int>(g, i);
         for (int j = 1; j <= 6; ++j) {
             printf("%d\n", p->HasPathTo(j));
-            if(p->TryGetShortestPathTo(j) != std::nullopt)
-                for(auto m : *p->TryGetShortestPathTo(j))
-                    printf("%d\n", m);
         }
 
         printf("\n");
