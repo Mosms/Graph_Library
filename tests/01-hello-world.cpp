@@ -2,9 +2,34 @@
 #include <DataStructures/UndirectedGraph.h>
 #include <Algorithms/DepthFirstSearcher.h>
 #include <Algorithms/BreadthFirstSearcher.h>
+#include <Algorithms/ShortestPaths.h>
 #include <cassert>
 #include <iostream>
 #include <cstring>
+static void test1() {
+    auto *g = new WeightedGraph<int>();
+    for (int i = 1; i <= 6; ++i) {
+        g->AddVertex(i);
+    }
+    g->AddEdge(1, 2, 1);
+    g->AddEdge(2, 3, 2);
+    g->AddEdge(3, 4, 3);
+    g->AddEdge(4, 1, 4);
+    g->AddEdge(5, 6, 5);
+    g->AddEdge(6, 5, 6);
+
+    ShortestPaths<WeightedGraph, int> *p = nullptr;
+    for (int i = 1; i <= 6; ++i) {
+        p = new ShortestPaths<WeightedGraph, int>(g, i);
+        for (int j = 1; j <= 6; ++j) {
+            printf("%d", p->HasPathTo(j));
+        }
+        printf("\n");
+        delete p;
+    }
+
+    delete g;
+}
 int main()
 {
     UndirectedGraph g; // 创建一张新的图
@@ -69,5 +94,6 @@ int main()
     DepthFirstSearcher<Graph> check2;
     check2.VisitAllVertices(&r, 1, prin);
 
+    test1();
     return 0;
 }
