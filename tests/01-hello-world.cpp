@@ -95,6 +95,7 @@ int main()
     check1.VisitAllVertices(&r, 1, prin);
     DepthFirstSearcher<Graph> check2;
     check2.VisitAllVertices(&r, 1, prin);
+    printf("\n");
 
     test1();
     return 0;
