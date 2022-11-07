@@ -30,12 +30,13 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
                     if(ValueDNew < ValueDBefore){
                         DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetDestination())->second = ValueDNew;
                         DijkstraShortestPaths<TGraph, TValue>::VertexPiValue.find(cor.GetDestination())->second = cor.GetSource();
-                        ExtractMin.push(cor.GetDestination, ValueDNew);
+                        ExtractMin.push(std::make_pair(cor.GetDestination, ValueDNew));
                     }
                 }
                 else {
                     DijkstraShortestPaths<TGraph, TValue>::VertexDValue.insert(std::make_pair(cor.GetDestination(), ValueDNew));
                     DijkstraShortestPaths<TGraph, TValue>::VertexPiValue.insert(std::make_pair(cor.GetDestination(), cor.GetSource()));
+                    ExtractMin.push(std::make_pair(cor.GetDestination, ValueDNew));
                 }
             }
 
