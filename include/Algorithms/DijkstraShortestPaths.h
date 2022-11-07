@@ -5,6 +5,7 @@
 
 template <template<class> class TGraph, typename TValue>
 class DijkstraShortestPaths : public ShortestPaths<TGraph, TValue>{
+public:
     DijkstraShortestPaths() = delete;
     DijkstraShortestPaths(const TGraph<TValue> *graph, int source);
     ~DijkstraShortestPaths() {}
