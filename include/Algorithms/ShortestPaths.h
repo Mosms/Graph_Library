@@ -21,7 +21,8 @@ public:
     std::optional<std::vector<int>> TryGetShortestPathTo(int destination) const;
 
 private:
-    void ShortestPathAddVertex(int vertex, std::vector<int>* container);
+    void ShortestPathAddVertex(int vertex, std::vector<int> *container);
+
 protected:
     void RelaxEdge(int from, int to, TValue weight);
 
@@ -101,9 +102,9 @@ std::optional<TValue> ShortestPaths<TGraph, TValue>::TryGetDistanceTo(int destin
 template <template<class> class TGraph, class TValue>
 std::optional<std::vector<int>> ShortestPaths<TGraph, TValue>::TryGetShortestPathTo(int destination) const {
     if(HasPathTo(destination)){
-        std::vector<int> paths;
-        ShortestPathAddVertex(destination, &paths);
-        return paths;
+        std::vector<int> thisPath;
+        ShortestPathAddVertex(destination, &thisPath);
+        return thisPath;
     }
     return std::nullopt;
 }
