@@ -30,13 +30,23 @@ std::vector<Edge> UndirectedGraph::GetIncomingEdges(int vertex) const {
                     inComing_Edges.push_back(Edge(cor.first, vertex));
         if (Edges.count(vertex))
             for (auto cor: Edges.find(vertex)->second)
-                inComing_Edges.push_back(Edge(vertex, cor));
+                inComing_Edges.push_back(Edge(cor, vertex));
     }
     return inComing_Edges;
 }
 
 std::vector<Edge> UndirectedGraph::GetOutgoingEdges(int vertex) const {
-    return this->GetIncomingEdges(vertex);
+    std::vector<Edge> outGoing_Edges;
+    if(ContainsVertex(vertex)) {
+        for (auto cor: Edges)
+            if (cor.second.count(vertex))
+                if(cor.first != vertex)//不加入自环情况
+                    outGoing_Edges.push_back(Edge(vertex, cor.first));
+        if (Edges.count(vertex))
+            for (auto cor: Edges.find(vertex)->second)
+                outGoing_Edges.push_back(Edge(vertex, cor));
+    }
+    return outGoing_Edges;
 }
 
 int UndirectedGraph::GetDegree(int vertex) const {
