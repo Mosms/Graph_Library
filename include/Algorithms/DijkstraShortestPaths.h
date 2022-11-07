@@ -35,7 +35,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
                 }
                 else {
                     DijkstraShortestPaths<TGraph, TValue>::VertexDValue.insert(std::make_pair(cor.GetDestination(), ValueDNew));
-                    DijkstraShortestPaths<TGraph, TValue>::VertexPiValue.insert(std::make_pair(cor.GetDestination(), cor.GetSource());
+                    DijkstraShortestPaths<TGraph, TValue>::VertexPiValue.insert(std::make_pair(cor.GetDestination(), cor.GetSource()));
                 }
             }
 
