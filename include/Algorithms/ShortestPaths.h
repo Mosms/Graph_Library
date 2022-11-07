@@ -24,31 +24,11 @@ private:
     void ShortestPathAddVertex(int vertex, std::vector<int> *container) const;
 
 protected:
-    void RelaxEdge(int from, int to, TValue weight);
-
-protected:
     std::map<int, TValue> VertexDValue;
     std::map<int, int> VertexPiValue;
     int Source;
 };
 
-template <template<class> class TGraph, class TValue>
-void ShortestPaths<TGraph, TValue>::RelaxEdge(int from, int to, TValue weight) {
-    assert(VertexDValue.count(from));
-    if(VertexDValue.count(to)){
-        assert(VertexPiValue.count(to));
-        if(VertexDValue.find(to)->second > VertexDValue.find(from)->second + weight) {
-            VertexDValue.find(to)->second = VertexDValue.find(from)->second + weight;
-            VertexPiValue.find(to)->second = from;
-        }
-    }
-    else {
-        assert(!VertexPiValue.count(to));
-        VertexDValue.insert(std::make_pair(to,VertexDValue.find(from)->second + weight));
-        VertexPiValue.insert(std::make_pair(to,from));
-    }
-    return;
-}
 template <template<class> class TGraph, class TValue>
 void ShortestPaths<TGraph, TValue>::ShortestPathAddVertex(int vertex, std::vector<int> *container) const {
     if(vertex == Source){
