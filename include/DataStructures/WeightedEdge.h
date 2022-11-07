@@ -6,7 +6,7 @@
 template<class T>
 class WeightedEdge: public Edge {
 public:
-    WeightedEdge(int source, int destination, T weight) :Edge(source, destination), weight(weight) {}
+    WeightedEdge(int source, int destination, T weight) : Edge(source, destination), weight(weight) {}
     ~WeightedEdge() {}
 public:
     T GetWeight() const { return weight; }

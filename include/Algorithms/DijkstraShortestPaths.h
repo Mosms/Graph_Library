@@ -24,23 +24,22 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         auto nowVisit = ExtractMin.top();
         ExtractMin.pop();
 
-        if(DijkstraShortestPaths<TGraph, TValue>::VertexDValue.count(nowVisit.first))//没有的话代表不可达，结果为0
-            for(auto cor : graph->GetOutgoingEdges(nowVisit.first)){
-                //assert(cor.GetSource() == nowVisit.first);
-                auto ValueDNew = DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetSource())->second + cor.GetWeight();
-                if(DijkstraShortestPaths<TGraph, TValue>::VertexDValue.count(cor.GetDestination())){
-                    if(ValueDNew < DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetDestination())->second){
-                        DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetDestination())->second = ValueDNew;
-                        DijkstraShortestPaths<TGraph, TValue>::VertexPiValue.find(cor.GetDestination())->second = cor.GetSource();
-                        ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
-                    }
-                }
-                else {
-                    DijkstraShortestPaths<TGraph, TValue>::VertexDValue.insert(std::make_pair(cor.GetDestination(), ValueDNew));
-                    DijkstraShortestPaths<TGraph, TValue>::VertexPiValue.insert(std::make_pair(cor.GetDestination(), cor.GetSource()));
+
+        for(auto cor : graph->GetOutgoingEdges(nowVisit.first)){
+            auto ValueDNew = DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetSource())->second + cor.GetWeight();
+            if(DijkstraShortestPaths<TGraph, TValue>::VertexDValue.count(cor.GetDestination())){
+                if(ValueDNew < DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetDestination())->second){
+                    DijkstraShortestPaths<TGraph, TValue>::VertexDValue.find(cor.GetDestination())->second = ValueDNew;
+                    DijkstraShortestPaths<TGraph, TValue>::VertexPiValue.find(cor.GetDestination())->second = cor.GetSource();
                     ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
                 }
             }
+            else {
+                DijkstraShortestPaths<TGraph, TValue>::VertexDValue.insert(std::make_pair(cor.GetDestination(), ValueDNew));
+                DijkstraShortestPaths<TGraph, TValue>::VertexPiValue.insert(std::make_pair(cor.GetDestination(), cor.GetSource()));
+                ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
+            }
+        }
 
     }
 }
