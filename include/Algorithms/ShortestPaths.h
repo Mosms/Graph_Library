@@ -60,7 +60,7 @@ void ShortestPaths<TGraph, TValue>::ShortestPathAddVertex(int vertex, std::vecto
 }
 template <template<class> class TGraph, class TValue>
         ShortestPaths<TGraph, TValue>::ShortestPaths(const TGraph<TValue> *graph, int source): Source(source) {
-            auto CompareDValue = [](std::pair<int, std::map<int, TValue>*> &a, std::pair<int, std::map<int, TValue>*> &b)->bool{
+            /*auto CompareDValue = [](std::pair<int, std::map<int, TValue>*> &a, std::pair<int, std::map<int, TValue>*> &b)->bool{
                 auto NowMap = a.second;
                 assert(NowMap == b.second);
                 bool Havea = NowMap->count(a.first), Haveb = NowMap->count(b.first);
@@ -82,7 +82,7 @@ template <template<class> class TGraph, class TValue>
                 if(VertexDValue.count(nowVisit.first))//没有的话代表不可达，结果为0
                     for(auto cor : graph->GetOutgoingEdges(nowVisit.first))
                         RelaxEdge(cor.GetSource(), cor.GetDestination(), cor.GetWeight());
-            }
+            }*/
         }
 
 template <template<class> class TGraph, class TValue>

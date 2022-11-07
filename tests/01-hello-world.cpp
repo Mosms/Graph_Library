@@ -3,6 +3,7 @@
 #include <Algorithms/DepthFirstSearcher.h>
 #include <Algorithms/BreadthFirstSearcher.h>
 #include <Algorithms/ShortestPaths.h>
+#include <Algorithms/DijkstraShortestPaths.h>
 #include <cassert>
 #include <iostream>
 #include <cstring>
@@ -20,7 +21,7 @@ static void test1() {
 
     ShortestPaths<WeightedGraph, int> *p = nullptr;
     for (int i = 1; i <= 6; ++i) {
-        p = new ShortestPaths<WeightedGraph, int>(g, i);
+        p = new DijkstraShortestPaths<WeightedGraph, int>(g, i);
         for (int j = 1; j <= 6; ++j) {
             printf("%d", p->HasPathTo(j));
         }
