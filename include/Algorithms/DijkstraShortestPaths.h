@@ -12,7 +12,7 @@ public:
 };
 
 template <template<class> class TGraph, class TValue>
-DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue> *graph, int source): DijkstraShortestPaths<TGraph, TValue>::Source(source) {
+DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue> *graph, int source){
     auto CompareDValue = [](std::pair<int, std::map<int, TValue>*> &a, std::pair<int, std::map<int, TValue>*> &b)->bool{
         auto NowMap = a.second;
         assert(NowMap == b.second);
