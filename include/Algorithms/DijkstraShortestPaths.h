@@ -2,6 +2,7 @@
 #define DIJKSTRASHORTEST_PATHS_H
 
 #include <Algorithms/ShortestPaths.h>
+#incldue <set>
 
 template <template<class> class TGraph, typename TValue>
 class DijkstraShortestPaths : public ShortestPaths<TGraph, TValue>{
