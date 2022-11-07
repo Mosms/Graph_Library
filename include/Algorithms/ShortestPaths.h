@@ -24,7 +24,7 @@ private:
     void RelaxEdge(int from, int to, TValue weight);
     void ShortestPathAddVertex(int vertex, std::vector<int>* container);
 
-private:
+protected:
     std::map<int, TValue> VertexDValue;
     std::map<int, int> VertexPiValue;
     int Source;
