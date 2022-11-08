@@ -24,8 +24,7 @@ private:
     void ShortestPathAddVertex(int vertex, std::vector<int> *container) const;
 
 protected:
-    std::map<int, TValue> VertexDValue;
-    std::map<int, int> VertexPiValue;
+    std::map<int, std::pair<TValue, int>> ShortestInformations;
     int Source;
 };
 
@@ -36,7 +35,7 @@ void ShortestPaths<TGraph, TValue>::ShortestPathAddVertex(int vertex, std::vecto
         container->push_back(Source);
         return;
     }
-    ShortestPathAddVertex(VertexPiValue.find(vertex)->second, container);
+    ShortestPathAddVertex(ShortestInformations.find(vertex)->second.second, container);
     container->push_back(vertex);
     return;
 }
@@ -46,12 +45,12 @@ template <template<class> class TGraph, class TValue>
         ShortestPaths<TGraph, TValue>::~ShortestPaths<TGraph, TValue>() {}
 template <template<class> class TGraph, class TValue>
 bool ShortestPaths<TGraph, TValue>::HasPathTo(int destination) const {
-    return VertexDValue.count(destination);
+    return ShortestInformations.count(destination);
 }
 template <template<class> class TGraph, class TValue>
 std::optional<TValue> ShortestPaths<TGraph, TValue>::TryGetDistanceTo(int destination) const {
     if(HasPathTo(destination))
-        return VertexDValue.find(destination)->second;
+        return ShortestInformations.find(destination)->second.first;
     return std::nullopt;
 }
 template <template<class> class TGraph, class TValue>
