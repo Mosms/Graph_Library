@@ -33,7 +33,7 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
             assert(nowVisit.second == (DijkstraShortestPaths<TGraph, TValue>::ShortestInformations).find(cor.GetSource())->second.first);
             auto ValueDNew = DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.find(cor.GetSource())->second.first + cor.GetWeight();
             if(DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.count(cor.GetDestination())){
-                if(ValueDNew < DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.find(cor.GetDestination())->second.second){
+                if(ValueDNew < DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.find(cor.GetDestination())->second.first){
                     DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.find(cor.GetDestination())->second.first = ValueDNew;
                     DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.find(cor.GetDestination())->second.second = cor.GetSource();
                     ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
