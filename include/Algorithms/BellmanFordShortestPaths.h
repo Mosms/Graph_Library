@@ -13,7 +13,7 @@ public:
 
 template <class TGraph>
 BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, int source): ShortestPaths<TGraph>(graph, source){
-    BellmanFordShortestPaths<TGraph>::ShortestInformations.insert(std::make_pair(source, std::make_pair(typename TGraph::EdgeValueType(), source)));
+    BellmanFordShortestPaths<TGraph>::ShortestInformations.insert(std::make_pair(source, std::make_pair(TValue(), source)));
     int nNumber = graph->CountVertices();
     for(int i = 1; i < nNumber; i++) {// n - 1 times
         for(auto corE : graph->GetEdges())

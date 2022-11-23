@@ -9,28 +9,27 @@
 #include <map>
 #include <utility>
 #include <type_traits>
+#define TValue typename TGraph::EdgeValueType
 
 template <class TGraph>
 class ShortestPaths {
+    static_assert(std::is_default_constructible_v<TValue>,
+                  "TValue requires default constructor");
 public:
     ShortestPaths() = delete;
     ShortestPaths(const TGraph *graph, int source);
     virtual ~ShortestPaths();
 public:
     bool HasPathTo(int destination) const;
-    std::optional<typename TGraph::EdgeValueType> TryGetDistanceTo(int destination) const;
+    std::optional<TValue> TryGetDistanceTo(int destination) const;
     std::optional<std::vector<int>> TryGetShortestPathTo(int destination) const;
 
 private:
     void ShortestPathAddVertex(int vertex, std::vector<int> *container) const;
 
 protected:
-    std::map<int, std::pair<typename TGraph::EdgeValueType, int>> ShortestInformations;
+    std::map<int, std::pair<TValue, int>> ShortestInformations;
     int Source;
-    
-public:
-    static_assert(std::is_default_constructible_v<typename TGraph::EdgeValueType>,
-                  "TValue requires default constructor");
 };
 
 
@@ -46,8 +45,7 @@ void ShortestPaths<TGraph>::ShortestPathAddVertex(int vertex, std::vector<int> *
     return;
 }
 template <class TGraph>
-        ShortestPaths<TGraph>::ShortestPaths(const TGraph *graph, int source): Source(source) {
-}
+        ShortestPaths<TGraph>::ShortestPaths(const TGraph *graph, int source): Source(source) {}
 template <class TGraph>
         ShortestPaths<TGraph>::~ShortestPaths() {}
 template <class TGraph>
@@ -55,7 +53,7 @@ bool ShortestPaths<TGraph>::HasPathTo(int destination) const {
     return ShortestInformations.count(destination);
 }
 template <class TGraph>
-std::optional<typename TGraph::EdgeValueType> ShortestPaths<TGraph>::TryGetDistanceTo(int destination) const {
+std::optional<TValue> ShortestPaths<TGraph>::TryGetDistanceTo(int destination) const {
     if(HasPathTo(destination))
         return ShortestInformations.find(destination)->second.first;
     return std::nullopt;
