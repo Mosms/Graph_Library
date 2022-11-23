@@ -27,6 +27,8 @@ private:
 protected:
     std::map<int, std::pair<typename TGraph::EdgeValueType, int>> ShortestInformations;
     int Source;
+    
+public:
     static_assert(std::is_default_constructible_v<typename TGraph::EdgeValueType>,
                   "TValue requires default constructor");
 };
