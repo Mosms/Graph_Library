@@ -8,6 +8,7 @@
 
 template<typename T>
 class WeightedGraph {
+public:
     typedef T EdgeValueType;
 public:
     WeightedGraph() {}
