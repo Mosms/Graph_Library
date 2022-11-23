@@ -25,7 +25,7 @@ public:
     virtual bool ContainsEdge(int vertex1, int vertex2) const ;
     virtual T GetWeight(int vertex1, int vertex2) const ;
     std::vector<int> GetVertices() const ;
-    std::vector<WeightedEdge<T>> GetEdges() const ;
+    virtual std::vector<WeightedEdge<T>> GetEdges() const ;
     virtual std::vector<WeightedEdge<T>> GetIncomingEdges(int vertex) const ;
     virtual std::vector<WeightedEdge<T>> GetOutgoingEdges(int vertex) const ;
     virtual int GetDegree(int vertex) const ;

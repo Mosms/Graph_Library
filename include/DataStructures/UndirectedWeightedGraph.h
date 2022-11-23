@@ -13,6 +13,7 @@ public:
     virtual T GetWeight(int vertex1, int vertex2) const override;
 
 public:
+    virtual std::vector<WeightedEdge<T>> GetEdges() const;
     virtual std::vector<WeightedEdge<T>> GetIncomingEdges(int vertex) const override;
     virtual std::vector<WeightedEdge<T>> GetOutgoingEdges(int vertex) const override;
     virtual int GetDegree(int vertex) const override;
@@ -53,6 +54,20 @@ T UndirectedWeightedGraph<T>::GetWeight(int vertex1, int vertex2) const {
                 return this->WeightedEdges.find(vertex2)->second.find(vertex1)->second;
     }
     return 0;//error
+}
+
+template<class T>
+std::vector<WeightedEdge<T>> UndirectedWeightedGraph<T>::GetEdges() const {
+    std::vector<WeightedEdge<T>> All_Edges;
+    for(auto cor : UndirectedWeightedGraph<T>::WeightedEdges)
+        for(auto ecor : cor.second)
+            if(ecor.first == cor.first)
+                All_Edges.push_back(WeightedEdge<T>(cor.first, ecor.first, ecor.second));
+            else {
+                All_Edges.push_back(WeightedEdge<T>(cor.first, ecor.first, ecor.second));
+                All_Edges.push_back(WeightedEdge<T>(ecor.first, cor.first, ecor.second));
+            }
+    return All_Edges;
 }
 template<class T>
 std::vector<WeightedEdge<T>> UndirectedWeightedGraph<T>::GetIncomingEdges(int vertex) const {
