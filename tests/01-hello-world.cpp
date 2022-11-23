@@ -124,5 +124,6 @@ int main()
     printf("\n");
 
     test1();
+    test2();
     return 0;
 }
