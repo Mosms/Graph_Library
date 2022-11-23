@@ -30,11 +30,6 @@ protected:
 
 
 template <class TGraph>
-ShortestPaths<TGraph>::ShortestPaths(const TGraph *graph, int source) {
-    static_assert(std::is_same<decltype(typename TGraph::EdgeValueType()), std::true_type>::value, 
-            "TValue requires default constructor");
-}
-template <class TGraph>
 void ShortestPaths<TGraph>::ShortestPathAddVertex(int vertex, std::vector<int> *container) const {
     if(vertex == Source){
         assert(container->empty());
@@ -46,7 +41,10 @@ void ShortestPaths<TGraph>::ShortestPathAddVertex(int vertex, std::vector<int> *
     return;
 }
 template <class TGraph>
-        ShortestPaths<TGraph>::ShortestPaths(const TGraph *graph, int source): Source(source) {}
+        ShortestPaths<TGraph>::ShortestPaths(const TGraph *graph, int source): Source(source) {
+    static_assert(std::is_same<decltype(typename TGraph::EdgeValueType()), std::true_type>::value,
+                  "TValue requires default constructor");
+}
 template <class TGraph>
         ShortestPaths<TGraph>::~ShortestPaths<TGraph>() {}
 template <class TGraph>
