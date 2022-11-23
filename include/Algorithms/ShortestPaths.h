@@ -27,6 +27,8 @@ private:
 protected:
     std::map<int, std::pair<typename TGraph::EdgeValueType, int>> ShortestInformations;
     int Source;
+    static_assert(std::is_default_constructible_v<typename TGraph::EdgeValueType>,
+                  "TValue requires default constructor");
 };
 
 
@@ -43,8 +45,6 @@ void ShortestPaths<TGraph>::ShortestPathAddVertex(int vertex, std::vector<int> *
 }
 template <class TGraph>
         ShortestPaths<TGraph>::ShortestPaths(const TGraph *graph, int source): Source(source) {
-    static_assert(std::is_default_constructible_v<typename TGraph::EdgeValueType>,
-                  "TValue requires default constructor");
 }
 template <class TGraph>
         ShortestPaths<TGraph>::~ShortestPaths() {}
