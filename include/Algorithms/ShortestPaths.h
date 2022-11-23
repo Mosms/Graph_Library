@@ -4,11 +4,11 @@
 #include <cassert>
 #include <vector>
 #include <optional>
-#include<functional>
+#include <functional>
 #include <queue>
 #include <map>
 #include <utility>
-#include <type_traits>
+//#include <type_traits>
 #define TValue typename TGraph::EdgeValueType
 
 template <class TGraph>
