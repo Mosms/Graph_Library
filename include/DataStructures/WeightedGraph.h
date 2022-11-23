@@ -6,8 +6,9 @@
 #include <set>
 #include <map>
 
-template<class T>
+template<typename T>
 class WeightedGraph {
+    typedef T EdgeValueType;
 public:
     WeightedGraph() {}
     ~WeightedGraph() {}

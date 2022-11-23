@@ -4,23 +4,23 @@
 #include <Algorithms/ShortestPaths.h>
 #include <set>
 
-template <template<class> class TGraph, typename TValue>
-class DijkstraShortestPaths : public ShortestPaths<TGraph, TValue>{
+template <class TGraph>
+class DijkstraShortestPaths : public ShortestPaths<TGraph>{
 public:
     DijkstraShortestPaths() = delete;
-    DijkstraShortestPaths(const TGraph<TValue> *graph, int source);
+    DijkstraShortestPaths(const TGraph *graph, int source);
     ~DijkstraShortestPaths() {}
 };
 
-template <template<class> class TGraph, class TValue>
-DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue> *graph, int source): ShortestPaths<TGraph, TValue>(graph, source){
-    auto CompareDValue = [](std::pair<int, TValue> &a, std::pair<int, TValue> &b)->bool{
+template <class TGraph>
+DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int source): ShortestPaths<TGraph>(graph, source){
+    auto CompareDValue = [](std::pair<int, typename TGraph::EdgeValueType> &a, std::pair<int, typename TGraph::EdgeValueType> &b)->bool{
         return a.second > b.second;
     };
     std::set<int> vis;
-    std::priority_queue<std::pair<int, TValue>, std::vector<std::pair<int, TValue>>, decltype(CompareDValue)> ExtractMin(CompareDValue);
-    DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.insert(std::make_pair(source, std::make_pair(TValue(), source)));
-    ExtractMin.push(std::make_pair(source, TValue()));
+    std::priority_queue<std::pair<int, typename TGraph::EdgeValueType>, std::vector<std::pair<int, typename TGraph::EdgeValueType>>, decltype(CompareDValue)> ExtractMin(CompareDValue);
+    DijkstraShortestPaths<TGraph>::ShortestInformations.insert(std::make_pair(source, std::make_pair(typename TGraph::EdgeValueType(), source)));
+    ExtractMin.push(std::make_pair(source, typename TGraph::EdgeValueType()));
     while(!ExtractMin.empty()) {
         auto nowVisit = ExtractMin.top();
         ExtractMin.pop();
@@ -30,17 +30,17 @@ DijkstraShortestPaths<TGraph, TValue>::DijkstraShortestPaths(const TGraph<TValue
         else vis.insert(nowVisit.first);
 
         for(auto cor : graph->GetOutgoingEdges(nowVisit.first)){
-            assert(nowVisit.second == (DijkstraShortestPaths<TGraph, TValue>::ShortestInformations).find(cor.GetSource())->second.first);
-            auto ValueDNew = DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.find(cor.GetSource())->second.first + cor.GetWeight();
-            if(DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.count(cor.GetDestination())){
-                if(ValueDNew < DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.find(cor.GetDestination())->second.first){
-                    DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.find(cor.GetDestination())->second.first = ValueDNew;
-                    DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.find(cor.GetDestination())->second.second = cor.GetSource();
+            assert(nowVisit.second == (DijkstraShortestPaths<TGraph>::ShortestInformations).find(cor.GetSource())->second.first);
+            auto ValueDNew = DijkstraShortestPaths<TGraph>::ShortestInformations.find(cor.GetSource())->second.first + cor.GetWeight();
+            if(DijkstraShortestPaths<TGraph>::ShortestInformations.count(cor.GetDestination())){
+                if(ValueDNew < DijkstraShortestPaths<TGraph>::ShortestInformations.find(cor.GetDestination())->second.first){
+                    DijkstraShortestPaths<TGraph>::ShortestInformations.find(cor.GetDestination())->second.first = ValueDNew;
+                    DijkstraShortestPaths<TGraph>::ShortestInformations.find(cor.GetDestination())->second.second = cor.GetSource();
                     ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
                 }
             }
             else {
-                DijkstraShortestPaths<TGraph, TValue>::ShortestInformations.insert(std::make_pair(cor.GetDestination(), std::make_pair(ValueDNew, cor.GetSource())));
+                DijkstraShortestPaths<TGraph>::ShortestInformations.insert(std::make_pair(cor.GetDestination(), std::make_pair(ValueDNew, cor.GetSource())));
                 ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
             }
         }
