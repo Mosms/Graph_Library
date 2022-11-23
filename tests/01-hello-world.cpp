@@ -126,7 +126,8 @@ int main()
     check2.VisitAllVertices(&r, 1, prin);
     printf("\n");
 
-    ShortestPaths<WeightedGraph<bb>> *jskajak = nullptr;
+    WeightedGraph<bb> sw;
+    ShortestPaths<WeightedGraph<bb>> jskajak(&sw, 1);
 
 
     test1();
