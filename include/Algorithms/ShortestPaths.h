@@ -47,7 +47,7 @@ template <class TGraph>
                   "TValue requires default constructor");
 }
 template <class TGraph>
-        ShortestPaths<TGraph>::~ShortestPaths<TGraph>() {}
+        ShortestPaths<TGraph>::~ShortestPaths() {}
 template <class TGraph>
 bool ShortestPaths<TGraph>::HasPathTo(int destination) const {
     return ShortestInformations.count(destination);
