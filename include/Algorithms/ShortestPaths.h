@@ -43,7 +43,7 @@ void ShortestPaths<TGraph>::ShortestPathAddVertex(int vertex, std::vector<int> *
 }
 template <class TGraph>
         ShortestPaths<TGraph>::ShortestPaths(const TGraph *graph, int source): Source(source) {
-    static_assert(std::is_default_constructible(typename TGraph::EdgeValueType()),
+    static_assert(std::is_default_constructible<typename TGraph::EdgeValueType>::value,
                   "TValue requires default constructor");
 }
 template <class TGraph>
