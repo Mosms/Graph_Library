@@ -31,7 +31,7 @@ protected:
 
 template <class TGraph>
 ShortestPaths<TGraph>::ShortestPaths(const TGraph *graph, int source) {
-    static_assert(std::is_same(decltype(typename TGraph::EdgeValueType()), std::true_type),
+    static_assert(std::is_same<decltype(typename TGraph::EdgeValueType()), std::true_type>::value, 
             "TValue requires default constructor");
 }
 template <class TGraph>
