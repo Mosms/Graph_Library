@@ -58,6 +58,9 @@ static void test2() {
 
     delete g;
 }
+class bb{
+    bb()=delete;
+};
 int main()
 {
     UndirectedGraph g; // 创建一张新的图
@@ -122,6 +125,9 @@ int main()
     DepthFirstSearcher<Graph> check2;
     check2.VisitAllVertices(&r, 1, prin);
     printf("\n");
+
+    ShortestPaths<WeightedGraph<bb>> *jskajak = nullptr;
+
 
     test1();
     test2();
