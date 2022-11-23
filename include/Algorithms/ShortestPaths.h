@@ -8,6 +8,7 @@
 #include <queue>
 #include <map>
 #include <utility>
+#include <type_traits>
 
 template <class TGraph>
 class ShortestPaths {
