@@ -31,7 +31,11 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
                 auto FindchoiceJ = FloydShortestPaths<TGraph>::ShortestInfors.count(std::make_pair(choice, j));
                 auto FindIJ = FloydShortestPaths<TGraph>::ShortestInfors.count(std::make_pair(i, j));
                 if(FindIchoice && FindchoiceJ)
-                    if(!FindIJ || IChoice->second.first + ChoiceJ->second.first < IJ->second.first) {
+                    if(!FindIJ)
+                        FloydShortestPaths<TGraph>::ShortestInfors.insert
+                        (std::make_pair(std::make_pair(i, j),
+                                        std::make_pair(IChoice->second.first + ChoiceJ->second.first, ChoiceJ->second.second)));
+                    else if(IChoice->second.first + ChoiceJ->second.first < IJ->second.first) {
                         IJ->second.first = IChoice->second.first +ChoiceJ->second.first;
                         IJ->second.second = ChoiceJ->second.second;
                     }
