@@ -5,6 +5,7 @@
 #include <Algorithms/ShortestPaths.h>
 #include <Algorithms/DijkstraShortestPaths.h>
 #include <Algorithms/BellmanFordShortestPaths.h>
+#include <Algorithms/FloydShortestPaths.h>
 #include <cstdio>
 //#include <cassert>
 //#include <iostream>
