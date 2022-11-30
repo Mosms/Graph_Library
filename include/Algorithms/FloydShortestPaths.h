@@ -25,7 +25,13 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
         (std::make_pair(std::make_pair(ecor.GetSource(), ecor.GetDestination()),
                         std::make_pair(ecor.GetWeight(), ecor.GetSource())));
     }
+
     auto Vertices = graph->GetVertices();
+    for(auto i : Vertices)
+        FloydShortestPaths<TGraph>::ShortestInfors.insert
+                (std::make_pair(std::make_pair(i, i),
+                                std::make_pair(TValue(), i)));
+
     for(auto choice : Vertices)
         for(auto i : Vertices)
             for(auto j : Vertices) {
