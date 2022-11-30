@@ -1,6 +1,8 @@
 #ifndef SHORTEST_PATHS
 #define SHORTEST_PATHS
 
+#define TValue typename TGraph::EdgeValueType
+
 #include <cassert>
 #include <vector>
 #include <optional>
@@ -9,7 +11,6 @@
 #include <map>
 #include <utility>
 //#include <type_traits>
-#define TValue typename TGraph::EdgeValueType
 
 template <class TGraph>
 class ShortestPaths {

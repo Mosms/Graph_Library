@@ -28,7 +28,7 @@ public:
     virtual std::vector<WeightedEdge<T>> GetEdges() const ;
     virtual std::vector<WeightedEdge<T>> GetIncomingEdges(int vertex) const ;
     virtual std::vector<WeightedEdge<T>> GetOutgoingEdges(int vertex) const ;
-    virtual int GetDegree(int vertex) const ;
+    virtual int GetDegree(int vertex) const;
     virtual std::vector<int> GetNeighbors(int vertex) const ;
 
 protected:
