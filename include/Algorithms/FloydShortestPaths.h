@@ -12,7 +12,7 @@ public:
 };
 
 template <class TGraph>
-FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) {
+FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourceShortestPaths<TGraph>(graph) {
     //------------------First----Initialization-----------------//
     for(auto ecor : graph->GetEdges()){
         FloydShortestPaths<TGraph>::ShortestInfors.insert
