@@ -15,7 +15,13 @@ template <class TGraph>
 FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourceShortestPaths<TGraph>(graph) {
     //------------------First----Initialization-----------------//
     for(auto ecor : graph->GetEdges()){
-        FloydShortestPaths<TGraph>::ShortestInfors.insert
+        if(FloydShortestPaths<TGraph>::ShortestInfors.count(std::make_pair(ecor.GetSource(), ecor.GetDestination()))){
+            if(ecor.GetWeight() < FloydShortestPaths<TGraph>::ShortestInfors.find(std::make_pair(ecor.GetSource(), ecor.GetDestination()))->second.first){
+                FloydShortestPaths<TGraph>::ShortestInfors.find(std::make_pair(ecor.GetSource(), ecor.GetDestination()))->second.first = ecor.GetWeight();
+                FloydShortestPaths<TGraph>::ShortestInfors.find(std::make_pair(ecor.GetSource(), ecor.GetDestination()))->second.second = ecor.GetSource();
+            }
+        }
+        else FloydShortestPaths<TGraph>::ShortestInfors.insert
         (std::make_pair(std::make_pair(ecor.GetSource(), ecor.GetDestination()),
                         std::make_pair(ecor.GetWeight(), ecor.GetSource())));
     }

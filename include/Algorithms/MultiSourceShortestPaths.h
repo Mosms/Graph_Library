@@ -32,10 +32,10 @@ bool MultiSourceShortestPaths<TGraph>::HasPathOf(int source, int destination) co
 template <typename TGraph>
 std::optional<TValue>
 MultiSourceShortestPaths<TGraph>::TryGetDistanceOf(int source, int destination) const {
-    if(!ShortestInfors.count(std::make_pair(source, destination)))
-        return std::nullopt;
-    else
+    if(HasPathOf(source, destination))
         return ShortestInfors.find(std::make_pair(source, destination))->second.first;
+    else
+        return std::nullopt;
 }
 template <typename TGraph>
 std::optional<std::vector<int>>
