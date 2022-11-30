@@ -23,13 +23,17 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
     for(auto choice : Vertices)
         for(auto i : Vertices)
             for(auto j : Vertices) {
-                auto FindIchoice = FloydShortestPaths<TGraph>::ShortestInfors.find(std::make_pair(i, choice));
-                auto FindchoiceJ = FloydShortestPaths<TGraph>::ShortestInfors.find(std::make_pair(choice, j));
-                auto FindIJ = FloydShortestPaths<TGraph>::ShortestInfors.find(std::make_pair(i, j));
-                if(!(FindIchoice == NULL || FindchoiceJ == NULL))
-                    if(FindIJ == nullptr || FindIchoice->second.first + FindchoiceJ->second.first < FindIJ->second.first) {
-                        FindIJ->second.first = FindIchoice->second.first +FindchoiceJ->second.first;
-                        FindIJ->second.second = FindchoiceJ->second.second;
+                auto IChoice = FloydShortestPaths<TGraph>::ShortestInfors.find(std::make_pair(i, choice));
+                auto ChoiceJ = FloydShortestPaths<TGraph>::ShortestInfors.find(std::make_pair(choice, j));
+                auto IJ = FloydShortestPaths<TGraph>::ShortestInfors.find(std::make_pair(i, j));
+
+                auto FindIchoice = FloydShortestPaths<TGraph>::ShortestInfors.count(std::make_pair(i, choice));
+                auto FindchoiceJ = FloydShortestPaths<TGraph>::ShortestInfors.count(std::make_pair(choice, j));
+                auto FindIJ = FloydShortestPaths<TGraph>::ShortestInfors.count(std::make_pair(i, j));
+                if(FindIchoice && FindchoiceJ)
+                    if(!FindIJ || IChoice->second.first + ChoiceJ->second.first < IJ->second.first) {
+                        IJ->second.first = IChoice->second.first +ChoiceJ->second.first;
+                        IJ->second.second = ChoiceJ->second.second;
                     }
             }
     return;
