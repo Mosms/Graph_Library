@@ -80,9 +80,8 @@ static void test3() {
         }
 
         printf("\n");
-        delete p;
     }
-
+    delete p;
     delete g;
 }
 class bb{
