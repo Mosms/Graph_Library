@@ -20,5 +20,5 @@ NegativeCycleException::NegativeCycleException(const GraphAlgorithm &s) : Negati
 }
 
 std::string NegativeCycleException::GetMessage() const {
-    return message;
+    return NegativeCycleException::message;
 }

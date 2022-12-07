@@ -57,7 +57,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
     for(auto i : Vertices)
         if(FloydInfors.find(std::make_pair(i, i))->second.first + epsilon<TValue>() < TValue())
             throw NegativeCycleException(MultiSource_Floyd);
-    
+
     return;
 }
 
