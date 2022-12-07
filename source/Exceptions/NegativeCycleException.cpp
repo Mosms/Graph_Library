@@ -11,6 +11,7 @@ NegativeCycleException::NegativeCycleException(const GraphAlgorithm &s) : Negati
             NegativeCycleException::message = "Bellman-Ford";
             break;
         case MultiSource_Floyd:
+            assert(0);
             NegativeCycleException::message = "Floyd";
             break;
         default:
