@@ -48,7 +48,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
                         FloydInfors.insert
                         (std::make_pair(std::make_pair(i, j),
                                         std::make_pair(IChoice->second.first + ChoiceJ->second.first, ChoiceJ->second.second)));
-                    else if(IChoice->second.first + ChoiceJ->second.first + epsilon<TValue>() < IJ->second.first) {
+                    else if(IChoice->second.first + ChoiceJ->second.first < IJ->second.first) {
                         IJ->second.first = IChoice->second.first + ChoiceJ->second.first;
                         IJ->second.second = ChoiceJ->second.second;
                     }
