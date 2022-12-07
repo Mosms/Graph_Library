@@ -1,15 +1,12 @@
-#include <string>
-using namespace std;
-
 #include <Exceptions/GLException.h>
 
-GLException::GLException(const string &s) : message(s) {}
+GLException::GLException(const std::string &s) : message(s) {}
 
-string GLException::GetMessage() const {
+std::string GLException::GetMessage() const {
   return message;
 }
 
-ostream &operator<<(ostream &os, const GLException &e) {
+std::ostream &operator<<(std::ostream &os, const GLException &e) {
   return os << e.GetMessage();
 }
 
