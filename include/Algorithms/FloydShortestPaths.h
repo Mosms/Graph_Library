@@ -29,6 +29,9 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
     }
 
     auto Vertices = graph->GetVertices();
+    for(auto i : Vertices)
+        FloydInfors.insert(std::make_pair(std::make_pair(i, i),
+                                          std::make_pair(TValue(), i)));
 
     for(auto choice : Vertices)
         for(auto i : Vertices)
@@ -49,16 +52,13 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
                         IJ->second.first = IChoice->second.first + ChoiceJ->second.first;
                         IJ->second.second = ChoiceJ->second.second;
                     }
-            }
-    
-    for(auto i : Vertices)
-        if(!FloydInfors.count(std::make_pair(i, i)))
-            FloydInfors.insert(std::make_pair(std::make_pair(i, i),
-                                              std::make_pair(TValue(), i)));
 
-    for(auto i : Vertices)
-        if(FloydInfors.find(std::make_pair(i, i))->second.first + epsilon<TValue>() < TValue())
-            throw NegativeCycleException(MultiSource_Floyd);
+                if(i == j)
+                    if(FindIchoice && FindchoiceJ)
+                        if(IChoice->second.first + ChoiceJ->second.first  epsilon<TValue>() < IJ->second.first) {
+                            throw NegativeCycleException(MultiSource_Floyd);
+                        }
+            }
 
     return;
 }
