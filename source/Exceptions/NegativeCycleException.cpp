@@ -5,7 +5,8 @@
 const GraphAlgorithm NegativeCycleException::WhatAlgorithm() const {
     return NegativeCycleBelongAlgorithm;
 }
-NegativeCycleException::NegativeCycleException(const GraphAlgorithm &s) : NegativeCycleBelongAlgorithm(s), GLException("nothing"){
+NegativeCycleException::NegativeCycleException(const GraphAlgorithm &s) :
+NegativeCycleBelongAlgorithm(s), GLException("nothing"){
     switch(s){
         case SingleSource_BellmanFord:
             NegativeCycleException::message = "Bellman-Ford";
