@@ -1,5 +1,5 @@
-#ifndef GL_EXCEPTION
-#define GL_EXCEPTION
+#ifndef GL_EXCEPTION_H
+#define GL_EXCEPTION_H
 
 #include <iostream>
 #include <exception>
@@ -15,5 +15,5 @@ class GLException : public std::exception {
 
 std::ostream &operator<<(std::ostream &os, const GLException &e);
 
-#endif
+#endif //GL_EXCEPTION_H
 
