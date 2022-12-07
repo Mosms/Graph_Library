@@ -52,7 +52,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
                         IJ->second.second = ChoiceJ->second.second;
                     }
 
-                if(IJ->second.first < epsilon<TValue>())
+                if(IJ->second.first + epsilon<TValue>() < TValue())
                     throw NegativeCycleException(MultiSource_Floyd);
             }
     return;
