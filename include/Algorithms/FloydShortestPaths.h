@@ -2,6 +2,7 @@
 #define FLOYD_SHORTEST_PATHS_H
 
 #include <Algorithms/MultiSourceShortestPaths.h>
+#include <Exceptions/NegativeCycleException.h>
 
 #define FloydInfors FloydShortestPaths<TGraph>::ShortestInfors
 
