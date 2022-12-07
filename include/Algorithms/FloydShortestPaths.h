@@ -55,7 +55,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
 
                 if(i == j)
                     if(FindIchoice && FindchoiceJ)
-                        if(IChoice->second.first + ChoiceJ->second.first + epsilon<TValue>() < IJ->second.first) {
+                        if(IChoice->second.first + ChoiceJ->second.first + epsilon<TValue>() < TValue()) {
                             throw NegativeCycleException(MultiSource_Floyd);
                         }
             }
