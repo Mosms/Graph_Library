@@ -15,6 +15,5 @@ public:
 private:
     GraphAlgorithm NegativeCycleBelongAlgorithm;
 };
-std::ostream &operator<<(std::ostream &os, const NegativeCycleException &e);
 
 #endif //NEGATIVECYCLE_EXCEPTION_H
