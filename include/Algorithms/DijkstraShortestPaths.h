@@ -4,6 +4,9 @@
 #include <Algorithms/ShortestPaths.h>
 #include <set>
 
+#define DijkInfors DijkstraShortestPaths<TGraph>::ShortestInformations
+
+
 template <class TGraph>
 class DijkstraShortestPaths : public ShortestPaths<TGraph>{
 public:
@@ -19,7 +22,7 @@ DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int so
     };
     std::set<int> vis;
     std::priority_queue<std::pair<int, TValue>, std::vector<std::pair<int, TValue>>, decltype(CompareDValue)> ExtractMin(CompareDValue);
-    DijkstraShortestPaths<TGraph>::ShortestInformations.insert(std::make_pair(source, std::make_pair(TValue(), source)));
+    DijkInfors.insert(std::make_pair(source, std::make_pair(TValue(), source)));
     ExtractMin.push(std::make_pair(source, TValue()));
     while(!ExtractMin.empty()) {
         auto nowVisit = ExtractMin.top();
@@ -30,17 +33,17 @@ DijkstraShortestPaths<TGraph>::DijkstraShortestPaths(const TGraph *graph, int so
         else vis.insert(nowVisit.first);
 
         for(auto cor : graph->GetOutgoingEdges(nowVisit.first)){
-            assert(nowVisit.second == (DijkstraShortestPaths<TGraph>::ShortestInformations).find(cor.GetSource())->second.first);
-            auto ValueDNew = DijkstraShortestPaths<TGraph>::ShortestInformations.find(cor.GetSource())->second.first + cor.GetWeight();
-            if(DijkstraShortestPaths<TGraph>::ShortestInformations.count(cor.GetDestination())){
-                if(ValueDNew < DijkstraShortestPaths<TGraph>::ShortestInformations.find(cor.GetDestination())->second.first){
-                    DijkstraShortestPaths<TGraph>::ShortestInformations.find(cor.GetDestination())->second.first = ValueDNew;
-                    DijkstraShortestPaths<TGraph>::ShortestInformations.find(cor.GetDestination())->second.second = cor.GetSource();
+            assert(nowVisit.second == DijkInfors.find(cor.GetSource())->second.first);
+            auto ValueDNew = DijkInfors.find(cor.GetSource())->second.first + cor.GetWeight();
+            if(DijkInfors.count(cor.GetDestination())){
+                if(ValueDNew < DijkInfors.find(cor.GetDestination())->second.first){
+                    DijkInfors.find(cor.GetDestination())->second.first = ValueDNew;
+                    DijkInfors.find(cor.GetDestination())->second.second = cor.GetSource();
                     ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
                 }
             }
             else {
-                DijkstraShortestPaths<TGraph>::ShortestInformations.insert(std::make_pair(cor.GetDestination(), std::make_pair(ValueDNew, cor.GetSource())));
+                DijkInfors.insert(std::make_pair(cor.GetDestination(), std::make_pair(ValueDNew, cor.GetSource())));
                 ExtractMin.push(std::make_pair(cor.GetDestination(), ValueDNew));
             }
         }

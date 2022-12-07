@@ -10,7 +10,14 @@
 #include <queue>
 #include <map>
 #include <utility>
-//#include <type_traits>
+#include <type_traits>
+
+template<typename ValueT>
+ValueT epsilon_real(std::true_type){ return 1e-6;}
+template<typename ValueT>
+ValueT epsilon_real(std::false_type){ return ValueT();}
+template<typename ValueT>
+ValueT epsilon(){ return epsilon_real<ValueT>(std::is_floating_point<ValueT>());}
 
 template <class TGraph>
 class ShortestPaths {
