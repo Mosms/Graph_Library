@@ -17,6 +17,10 @@ public:
 template <class TGraph>
 FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourceShortestPaths<TGraph>(graph) {
     //------------------First----Initialization-----------------//
+    auto Vertices = graph->GetVertices();
+    for(auto i : Vertices)
+        FloydInfors.insert(std::make_pair(std::make_pair(i, i),
+                                          std::make_pair(TValue(), i)));
     for(auto ecor : graph->GetEdges()){
         if(FloydInfors.count(std::make_pair(ecor.GetSource(), ecor.GetDestination()))){
             if(ecor.GetWeight() < FloydInfors.find(std::make_pair(ecor.GetSource(), ecor.GetDestination()))->second.first){
@@ -28,10 +32,6 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
                                                std::make_pair(ecor.GetWeight(), ecor.GetSource())));
     }
 
-    auto Vertices = graph->GetVertices();
-    for(auto i : Vertices)
-        FloydInfors.insert(std::make_pair(std::make_pair(i, i),
-                                          std::make_pair(TValue(), i)));
 
     for(auto choice : Vertices)
         for(auto i : Vertices)
@@ -55,7 +55,7 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
             }
 
     for(auto i : Vertices)
-        if(FloydInfors.find(std::make_pair(i, i))->second.first < TValue()) {//+ epsilon<TValue>()
+        if(FloydInfors.find(std::make_pair(i, i))->second.first + epsilon<TValue>()< TValue()) {//
             throw NegativeCycleException(MultiSource_Floyd);
             break;
         }
