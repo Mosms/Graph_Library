@@ -52,7 +52,6 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
                         IJ->second.first = IChoice->second.first + ChoiceJ->second.first;
                         IJ->second.second = ChoiceJ->second.second;
                     }
-
             }
     for(auto i : Vertices)
         if(FloydInfors.find(std::make_pair(i, i))->second.first + epsilon<TValue>() < TValue())

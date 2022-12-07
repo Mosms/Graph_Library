@@ -18,7 +18,3 @@ NegativeCycleException::NegativeCycleException(const GraphAlgorithm &s) : Negati
             break;
     }
 }
-
-std::string NegativeCycleException::GetMessage() const {
-    return NegativeCycleException::message;
-}
