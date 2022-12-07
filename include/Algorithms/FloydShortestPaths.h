@@ -52,13 +52,13 @@ FloydShortestPaths<TGraph>::FloydShortestPaths(const TGraph *graph) : MultiSourc
                         IJ->second.first = IChoice->second.first + ChoiceJ->second.first;
                         IJ->second.second = ChoiceJ->second.second;
                     }
-
-                if(i == j)
-                    if(FindIchoice && FindchoiceJ)
-                        if(IChoice->second.first + ChoiceJ->second.first + epsilon<TValue>() < TValue()) {
-                            throw NegativeCycleException(MultiSource_Floyd);
-                        }
             }
+
+    for(auto i : Vertices)
+        if(FloydInfors.find(std::make_pair(i, i))->second.first + epsilon<TValue>() < TValue()) {
+            throw NegativeCycleException(MultiSource_Floyd);
+            break;
+        }
 
     return;
 }

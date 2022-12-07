@@ -40,6 +40,7 @@ BellmanFordShortestPaths<TGraph>::BellmanFordShortestPaths(const TGraph *graph, 
             if(BF_infors.count(corE.GetDestination())){
                 if(ValueDNew < BF_infors.find(corE.GetDestination())->second.first){
                     throw NegativeCycleException(SingleSource_BellmanFord);
+                    break;
                 }
             }
         }
